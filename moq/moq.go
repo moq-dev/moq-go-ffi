@@ -1012,6 +1012,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_video_properties()
+		})
+		if checksum != 30609 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_video_properties: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_abort()
 		})
 		if checksum != 22408 {
@@ -3088,6 +3097,10 @@ type MoqBroadcastProducerInterface interface {
 	// once it is warm); consumers observe the change via
 	// `MoqBroadcastConsumer::route_updates` and sessions forward it downstream.
 	SetRoute(route MoqRoute) error
+	// Replace the catalog properties shared by every video rendition.
+	//
+	// Rotation is clockwise and normalized to the nearest quarter turn. An absent field is removed from the next catalog update.
+	SetVideoProperties(properties MoqVideoProperties) error
 }
 type MoqBroadcastProducer struct {
 	ffiObject FfiObject
@@ -3352,6 +3365,20 @@ func (_self *MoqBroadcastProducer) SetRoute(route MoqRoute) error {
 	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
 		C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_set_route(
 			_pointer, FfiConverterMoqRouteINSTANCE.Lower(route), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Replace the catalog properties shared by every video rendition.
+//
+// Rotation is clockwise and normalized to the nearest quarter turn. An absent field is removed from the next catalog update.
+func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoProperties) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_set_video_properties(
+			_pointer, FfiConverterMoqVideoPropertiesINSTANCE.Lower(properties), _uniffiStatus)
 		return false
 	})
 	return _uniffiErr.AsError()
@@ -8432,6 +8459,60 @@ func (c FfiConverterMoqVideoHint) Write(writer io.Writer, value MoqVideoHint) {
 type FfiDestroyerMoqVideoHint struct{}
 
 func (_ FfiDestroyerMoqVideoHint) Destroy(value MoqVideoHint) {
+	value.Destroy()
+}
+
+// Catalog properties shared by every video rendition.
+//
+// Passing an absent field clears it from the next catalog snapshot rather than preserving the previous value.
+type MoqVideoProperties struct {
+	// Final rendered size after rotation, or absent to clear the explicit display size.
+	Display *MoqDimensions
+	// Clockwise rotation in degrees, or absent to clear the explicit rotation.
+	Rotation *float64
+	// Whether to flip horizontally after rotation, or absent to clear the explicit value.
+	Flip *bool
+}
+
+func (r *MoqVideoProperties) Destroy() {
+	FfiDestroyerOptionalMoqDimensions{}.Destroy(r.Display)
+	FfiDestroyerOptionalFloat64{}.Destroy(r.Rotation)
+	FfiDestroyerOptionalBool{}.Destroy(r.Flip)
+}
+
+type FfiConverterMoqVideoProperties struct{}
+
+var FfiConverterMoqVideoPropertiesINSTANCE = FfiConverterMoqVideoProperties{}
+
+func (c FfiConverterMoqVideoProperties) Lift(rb RustBufferI) MoqVideoProperties {
+	return LiftFromRustBuffer[MoqVideoProperties](c, rb)
+}
+
+func (c FfiConverterMoqVideoProperties) Read(reader io.Reader) MoqVideoProperties {
+	return MoqVideoProperties{
+		FfiConverterOptionalMoqDimensionsINSTANCE.Read(reader),
+		FfiConverterOptionalFloat64INSTANCE.Read(reader),
+		FfiConverterOptionalBoolINSTANCE.Read(reader),
+	}
+}
+
+func (c FfiConverterMoqVideoProperties) Lower(value MoqVideoProperties) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoProperties](c, value)
+}
+
+func (c FfiConverterMoqVideoProperties) LowerExternal(value MoqVideoProperties) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoProperties](c, value))
+}
+
+func (c FfiConverterMoqVideoProperties) Write(writer io.Writer, value MoqVideoProperties) {
+	FfiConverterOptionalMoqDimensionsINSTANCE.Write(writer, value.Display)
+	FfiConverterOptionalFloat64INSTANCE.Write(writer, value.Rotation)
+	FfiConverterOptionalBoolINSTANCE.Write(writer, value.Flip)
+}
+
+type FfiDestroyerMoqVideoProperties struct{}
+
+func (_ FfiDestroyerMoqVideoProperties) Destroy(value MoqVideoProperties) {
 	value.Destroy()
 }
 
