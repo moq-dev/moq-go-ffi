@@ -946,6 +946,11 @@ void uniffi_moq_ffi_fn_method_moqbroadcastproducer_set_route(uint64_t ptr, RustB
 void uniffi_moq_ffi_fn_method_moqbroadcastproducer_set_video_properties(uint64_t ptr, RustBuffer properties, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_PUBLISH_VIDEO
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_PUBLISH_VIDEO
+uint64_t uniffi_moq_ffi_fn_method_moqbroadcastproducer_publish_video(uint64_t ptr, RustBuffer input, RustBuffer output, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQGROUPPRODUCER
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQGROUPPRODUCER
 uint64_t uniffi_moq_ffi_fn_clone_moqgroupproducer(uint64_t handle, RustCallStatus *out_status
@@ -1406,6 +1411,36 @@ void uniffi_moq_ffi_fn_method_moqsession_shutdown(uint64_t ptr, RustCallStatus *
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_STATS
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_STATS
 RustBuffer uniffi_moq_ffi_fn_method_moqsession_stats(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQVIDEOPRODUCER
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQVIDEOPRODUCER
+uint64_t uniffi_moq_ffi_fn_clone_moqvideoproducer(uint64_t handle, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQVIDEOPRODUCER
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQVIDEOPRODUCER
+void uniffi_moq_ffi_fn_free_moqvideoproducer(uint64_t handle, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_CUT
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_CUT
+void uniffi_moq_ffi_fn_method_moqvideoproducer_cut(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_FINISH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_FINISH
+void uniffi_moq_ffi_fn_method_moqvideoproducer_finish(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_SET_BITRATE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_SET_BITRATE
+void uniffi_moq_ffi_fn_method_moqvideoproducer_set_bitrate(uint64_t ptr, uint64_t bitrate, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_WRITE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_WRITE
+void uniffi_moq_ffi_fn_method_moqvideoproducer_write(uint64_t ptr, RustBuffer frame, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FUNC_MOQ_LOG_LEVEL
@@ -2105,6 +2140,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_video_propertie
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_PUBLISH_VIDEO
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_PUBLISH_VIDEO
+uint16_t uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQGROUPPRODUCER_ABORT
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQGROUPPRODUCER_ABORT
 uint16_t uniffi_moq_ffi_checksum_method_moqgroupproducer_abort(void
@@ -2510,6 +2551,30 @@ uint16_t uniffi_moq_ffi_checksum_method_moqsession_shutdown(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_STATS
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_STATS
 uint16_t uniffi_moq_ffi_checksum_method_moqsession_stats(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_CUT
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_CUT
+uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_cut(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_FINISH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_FINISH
+uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_finish(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_SET_BITRATE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_SET_BITRATE
+uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_set_bitrate(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_WRITE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_WRITE
+uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_write(void
     
 );
 #endif

@@ -1021,6 +1021,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video()
+		})
+		if checksum != 50170 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_abort()
 		})
 		if checksum != 22408 {
@@ -1629,6 +1638,42 @@ func uniffiCheckChecksums() {
 		if checksum != 26506 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_stats: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_cut()
+		})
+		if checksum != 55246 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_cut: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_finish()
+		})
+		if checksum != 27116 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_finish: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_set_bitrate()
+		})
+		if checksum != 53159 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_set_bitrate: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_write()
+		})
+		if checksum != 63316 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_write: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -3101,6 +3146,15 @@ type MoqBroadcastProducerInterface interface {
 	//
 	// Rotation is clockwise and normalized to the nearest quarter turn. An absent field is removed from the next catalog update.
 	SetVideoProperties(properties MoqVideoProperties) error
+	// Open a video track on this broadcast, encoding the raw frames written to
+	// it.
+	//
+	// The encoder opens here, so an unsupported codec, resolution, or backend
+	// fails now rather than on the first frame. The track is named after the
+	// codec (`.avc3` / `.hev1`) and its catalog rendition appears once the first
+	// keyframe has been encoded, which is where the resolution and codec string
+	// come from.
+	PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error)
 }
 type MoqBroadcastProducer struct {
 	ffiObject FfiObject
@@ -3382,6 +3436,29 @@ func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoPropert
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// Open a video track on this broadcast, encoding the raw frames written to
+// it.
+//
+// The encoder opens here, so an unsupported codec, resolution, or backend
+// fails now rather than on the first frame. The track is named after the
+// codec (`.avc3` / `.hev1`) and its catalog rendition appears once the first
+// keyframe has been encoded, which is where the resolution and codec string
+// come from.
+func (_self *MoqBroadcastProducer) PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_publish_video(
+			_pointer, FfiConverterMoqVideoEncoderInputINSTANCE.Lower(input), FfiConverterMoqVideoEncoderOutputINSTANCE.Lower(output), _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqVideoProducer
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqVideoProducerINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 func (object *MoqBroadcastProducer) Destroy() {
 	runtime.SetFinalizer(object, nil)
@@ -7266,6 +7343,184 @@ func (_ FfiDestroyerMoqTrackRequest) Destroy(value *MoqTrackRequest) {
 	value.Destroy()
 }
 
+// Producer for a raw-video track.
+//
+// Built via [`MoqBroadcastProducer::publish_video`]. Each
+// [`write`](Self::write) accepts a [`MoqVideoFrame`] whose `data` is in the
+// pixel format declared by the [`MoqVideoEncoderInput`] passed at publish time.
+type MoqVideoProducerInterface interface {
+	// Cut a new group at the next written frame.
+	//
+	// Optional. The encoder already keyframes every
+	// [`gop`](MoqVideoEncoderOutput::gop) frames, and each of those cuts a
+	// group, so a subscriber can always join without you calling this. Reach for
+	// it only to place the boundaries yourself: aligning groups with something
+	// the encoder cannot see, such as a scene change, a source switch, or
+	// resuming after an idle gap.
+	//
+	// The next frame is encoded as a keyframe, which closes the open group and
+	// starts a new one at it. Calling this repeatedly before that frame arrives
+	// cuts once, not several times.
+	Cut() error
+	// Flush any frames the codec is still holding and finalize the track.
+	Finish() error
+	// Retune the live encoder to `bitrate` bits per second, taking effect from
+	// roughly the next frame. No keyframe is forced, so this is cheap enough to
+	// drive from a congestion controller.
+	//
+	// The configured bitrate is a ceiling on some backends (openh264 rejects a
+	// raise above the rate it opened at), so set
+	// [`bitrate`](MoqVideoEncoderOutput::bitrate) to the highest you will ask for
+	// and adapt downwards from there.
+	//
+	// Errors if this backend cannot retune while running. That is not fatal: the
+	// encoder keeps running at its current rate, so stop adapting rather than
+	// stop publishing.
+	SetBitrate(bitrate uint64) error
+	// Encode and publish one raw frame.
+	//
+	// A backend that pipelines publishes an earlier frame's output here, so a
+	// call that emits nothing on the wire is normal rather than an error.
+	Write(frame MoqVideoFrame) error
+}
+
+// Producer for a raw-video track.
+//
+// Built via [`MoqBroadcastProducer::publish_video`]. Each
+// [`write`](Self::write) accepts a [`MoqVideoFrame`] whose `data` is in the
+// pixel format declared by the [`MoqVideoEncoderInput`] passed at publish time.
+type MoqVideoProducer struct {
+	ffiObject FfiObject
+}
+
+// Cut a new group at the next written frame.
+//
+// Optional. The encoder already keyframes every
+// [`gop`](MoqVideoEncoderOutput::gop) frames, and each of those cuts a
+// group, so a subscriber can always join without you calling this. Reach for
+// it only to place the boundaries yourself: aligning groups with something
+// the encoder cannot see, such as a scene change, a source switch, or
+// resuming after an idle gap.
+//
+// The next frame is encoded as a keyframe, which closes the open group and
+// starts a new one at it. Calling this repeatedly before that frame arrives
+// cuts once, not several times.
+func (_self *MoqVideoProducer) Cut() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_cut(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Flush any frames the codec is still holding and finalize the track.
+func (_self *MoqVideoProducer) Finish() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_finish(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Retune the live encoder to `bitrate` bits per second, taking effect from
+// roughly the next frame. No keyframe is forced, so this is cheap enough to
+// drive from a congestion controller.
+//
+// The configured bitrate is a ceiling on some backends (openh264 rejects a
+// raise above the rate it opened at), so set
+// [`bitrate`](MoqVideoEncoderOutput::bitrate) to the highest you will ask for
+// and adapt downwards from there.
+//
+// Errors if this backend cannot retune while running. That is not fatal: the
+// encoder keeps running at its current rate, so stop adapting rather than
+// stop publishing.
+func (_self *MoqVideoProducer) SetBitrate(bitrate uint64) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_set_bitrate(
+			_pointer, FfiConverterUint64INSTANCE.Lower(bitrate), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Encode and publish one raw frame.
+//
+// A backend that pipelines publishes an earlier frame's output here, so a
+// call that emits nothing on the wire is normal rather than an error.
+func (_self *MoqVideoProducer) Write(frame MoqVideoFrame) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_write(
+			_pointer, FfiConverterMoqVideoFrameINSTANCE.Lower(frame), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+func (object *MoqVideoProducer) Destroy() {
+	runtime.SetFinalizer(object, nil)
+	object.ffiObject.destroy()
+}
+
+type FfiConverterMoqVideoProducer struct{}
+
+var FfiConverterMoqVideoProducerINSTANCE = FfiConverterMoqVideoProducer{}
+
+func (c FfiConverterMoqVideoProducer) Lift(handle C.uint64_t) *MoqVideoProducer {
+	result := &MoqVideoProducer{
+		newFfiObject(
+			handle,
+			func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+				return C.uniffi_moq_ffi_fn_clone_moqvideoproducer(handle, status)
+			},
+			func(handle C.uint64_t, status *C.RustCallStatus) {
+				C.uniffi_moq_ffi_fn_free_moqvideoproducer(handle, status)
+			},
+		),
+	}
+	runtime.SetFinalizer(result, (*MoqVideoProducer).Destroy)
+	return result
+}
+
+func (c FfiConverterMoqVideoProducer) Read(reader io.Reader) *MoqVideoProducer {
+	return c.Lift(C.uint64_t(readUint64(reader)))
+}
+
+func (c FfiConverterMoqVideoProducer) Lower(value *MoqVideoProducer) C.uint64_t {
+	// TODO: this is bad - all synchronization from ObjectRuntime.go is discarded here,
+	// because the handle will be decremented immediately after this function returns,
+	// and someone will be left holding onto a non-locked handle.
+	handle := value.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer value.ffiObject.decrementPointer()
+	return handle
+}
+
+func (c FfiConverterMoqVideoProducer) Write(writer io.Writer, value *MoqVideoProducer) {
+	writeUint64(writer, uint64(c.Lower(value)))
+}
+
+func LiftFromExternalMoqVideoProducer(handle uint64) *MoqVideoProducer {
+	return FfiConverterMoqVideoProducerINSTANCE.Lift(C.uint64_t(handle))
+}
+
+func LowerToExternalMoqVideoProducer(value *MoqVideoProducer) uint64 {
+	return uint64(FfiConverterMoqVideoProducerINSTANCE.Lower(value))
+}
+
+type FfiDestroyerMoqVideoProducer struct{}
+
+func (_ FfiDestroyerMoqVideoProducer) Destroy(value *MoqVideoProducer) {
+	value.Destroy()
+}
+
 type MoqAudio struct {
 	Codec        string
 	Description  *[]byte
@@ -8396,6 +8651,175 @@ func (_ FfiDestroyerMoqVideo) Destroy(value MoqVideo) {
 	value.Destroy()
 }
 
+// Raw frame layout the caller will pass to [`MoqVideoProducer::write`], plus
+// the resolution and rate the encoder is opened at. Every written frame must
+// match `width` x `height`; scale before writing if your source moves.
+type MoqVideoEncoderInput struct {
+	Format MoqVideoPixelFormat
+	// Encoded width in pixels. Must be even (I420 chroma is subsampled 2x2).
+	Width uint32
+	// Encoded height in pixels. Must be even.
+	Height uint32
+	// Nominal frames per second, used for the codec time base and the default
+	// bitrate and keyframe interval. Must be non-zero.
+	Framerate uint32
+}
+
+func (r *MoqVideoEncoderInput) Destroy() {
+	FfiDestroyerMoqVideoPixelFormat{}.Destroy(r.Format)
+	FfiDestroyerUint32{}.Destroy(r.Width)
+	FfiDestroyerUint32{}.Destroy(r.Height)
+	FfiDestroyerUint32{}.Destroy(r.Framerate)
+}
+
+type FfiConverterMoqVideoEncoderInput struct{}
+
+var FfiConverterMoqVideoEncoderInputINSTANCE = FfiConverterMoqVideoEncoderInput{}
+
+func (c FfiConverterMoqVideoEncoderInput) Lift(rb RustBufferI) MoqVideoEncoderInput {
+	return LiftFromRustBuffer[MoqVideoEncoderInput](c, rb)
+}
+
+func (c FfiConverterMoqVideoEncoderInput) Read(reader io.Reader) MoqVideoEncoderInput {
+	return MoqVideoEncoderInput{
+		FfiConverterMoqVideoPixelFormatINSTANCE.Read(reader),
+		FfiConverterUint32INSTANCE.Read(reader),
+		FfiConverterUint32INSTANCE.Read(reader),
+		FfiConverterUint32INSTANCE.Read(reader),
+	}
+}
+
+func (c FfiConverterMoqVideoEncoderInput) Lower(value MoqVideoEncoderInput) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoEncoderInput](c, value)
+}
+
+func (c FfiConverterMoqVideoEncoderInput) LowerExternal(value MoqVideoEncoderInput) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoEncoderInput](c, value))
+}
+
+func (c FfiConverterMoqVideoEncoderInput) Write(writer io.Writer, value MoqVideoEncoderInput) {
+	FfiConverterMoqVideoPixelFormatINSTANCE.Write(writer, value.Format)
+	FfiConverterUint32INSTANCE.Write(writer, value.Width)
+	FfiConverterUint32INSTANCE.Write(writer, value.Height)
+	FfiConverterUint32INSTANCE.Write(writer, value.Framerate)
+}
+
+type FfiDestroyerMoqVideoEncoderInput struct{}
+
+func (_ FfiDestroyerMoqVideoEncoderInput) Destroy(value MoqVideoEncoderInput) {
+	value.Destroy()
+}
+
+// Codec-side configuration.
+type MoqVideoEncoderOutput struct {
+	Codec MoqVideoCodec
+	// Target bitrate in bits per second. `None` derives one from the resolution
+	// and framerate.
+	Bitrate *uint64
+	// Keyframe interval in frames: a subscriber joining mid-stream waits at most
+	// this many frames before it can decode. `None` uses ~2 seconds.
+	Gop *uint32
+	// Encoder implementation preference. Pass
+	// [`MoqVideoEncoderKind::Auto`] unless you need a specific backend.
+	Kind MoqVideoEncoderKind
+}
+
+func (r *MoqVideoEncoderOutput) Destroy() {
+	FfiDestroyerMoqVideoCodec{}.Destroy(r.Codec)
+	FfiDestroyerOptionalUint64{}.Destroy(r.Bitrate)
+	FfiDestroyerOptionalUint32{}.Destroy(r.Gop)
+	FfiDestroyerMoqVideoEncoderKind{}.Destroy(r.Kind)
+}
+
+type FfiConverterMoqVideoEncoderOutput struct{}
+
+var FfiConverterMoqVideoEncoderOutputINSTANCE = FfiConverterMoqVideoEncoderOutput{}
+
+func (c FfiConverterMoqVideoEncoderOutput) Lift(rb RustBufferI) MoqVideoEncoderOutput {
+	return LiftFromRustBuffer[MoqVideoEncoderOutput](c, rb)
+}
+
+func (c FfiConverterMoqVideoEncoderOutput) Read(reader io.Reader) MoqVideoEncoderOutput {
+	return MoqVideoEncoderOutput{
+		FfiConverterMoqVideoCodecINSTANCE.Read(reader),
+		FfiConverterOptionalUint64INSTANCE.Read(reader),
+		FfiConverterOptionalUint32INSTANCE.Read(reader),
+		FfiConverterMoqVideoEncoderKindINSTANCE.Read(reader),
+	}
+}
+
+func (c FfiConverterMoqVideoEncoderOutput) Lower(value MoqVideoEncoderOutput) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoEncoderOutput](c, value)
+}
+
+func (c FfiConverterMoqVideoEncoderOutput) LowerExternal(value MoqVideoEncoderOutput) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoEncoderOutput](c, value))
+}
+
+func (c FfiConverterMoqVideoEncoderOutput) Write(writer io.Writer, value MoqVideoEncoderOutput) {
+	FfiConverterMoqVideoCodecINSTANCE.Write(writer, value.Codec)
+	FfiConverterOptionalUint64INSTANCE.Write(writer, value.Bitrate)
+	FfiConverterOptionalUint32INSTANCE.Write(writer, value.Gop)
+	FfiConverterMoqVideoEncoderKindINSTANCE.Write(writer, value.Kind)
+}
+
+type FfiDestroyerMoqVideoEncoderOutput struct{}
+
+func (_ FfiDestroyerMoqVideoEncoderOutput) Destroy(value MoqVideoEncoderOutput) {
+	value.Destroy()
+}
+
+// One raw video frame: pixels plus a presentation timestamp.
+//
+// The pixel format and resolution are fixed by [`MoqVideoEncoderInput`] at
+// publish time, so a frame carries neither. `data` is exactly one picture in
+// that layout.
+type MoqVideoFrame struct {
+	// Presentation timestamp, in microseconds.
+	TimestampUs uint64
+	// The pixels, in the configured layout.
+	Data []byte
+}
+
+func (r *MoqVideoFrame) Destroy() {
+	FfiDestroyerUint64{}.Destroy(r.TimestampUs)
+	FfiDestroyerBytes{}.Destroy(r.Data)
+}
+
+type FfiConverterMoqVideoFrame struct{}
+
+var FfiConverterMoqVideoFrameINSTANCE = FfiConverterMoqVideoFrame{}
+
+func (c FfiConverterMoqVideoFrame) Lift(rb RustBufferI) MoqVideoFrame {
+	return LiftFromRustBuffer[MoqVideoFrame](c, rb)
+}
+
+func (c FfiConverterMoqVideoFrame) Read(reader io.Reader) MoqVideoFrame {
+	return MoqVideoFrame{
+		FfiConverterUint64INSTANCE.Read(reader),
+		FfiConverterBytesINSTANCE.Read(reader),
+	}
+}
+
+func (c FfiConverterMoqVideoFrame) Lower(value MoqVideoFrame) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoFrame](c, value)
+}
+
+func (c FfiConverterMoqVideoFrame) LowerExternal(value MoqVideoFrame) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoFrame](c, value))
+}
+
+func (c FfiConverterMoqVideoFrame) Write(writer io.Writer, value MoqVideoFrame) {
+	FfiConverterUint64INSTANCE.Write(writer, value.TimestampUs)
+	FfiConverterBytesINSTANCE.Write(writer, value.Data)
+}
+
+type FfiDestroyerMoqVideoFrame struct{}
+
+func (_ FfiDestroyerMoqVideoFrame) Destroy(value MoqVideoFrame) {
+	value.Destroy()
+}
+
 // Caller-provided video catalog fields for [`MoqInit`].
 //
 // Every field is optional and fills only a gap the stream leaves; a value the stream detects wins.
@@ -8706,6 +9130,7 @@ var ErrMoqErrorMedia = fmt.Errorf("MoqErrorMedia")
 var ErrMoqErrorMux = fmt.Errorf("MoqErrorMux")
 var ErrMoqErrorJsonTrack = fmt.Errorf("MoqErrorJsonTrack")
 var ErrMoqErrorAudio = fmt.Errorf("MoqErrorAudio")
+var ErrMoqErrorVideo = fmt.Errorf("MoqErrorVideo")
 var ErrMoqErrorUrl = fmt.Errorf("MoqErrorUrl")
 var ErrMoqErrorTimeOverflow = fmt.Errorf("MoqErrorTimeOverflow")
 var ErrMoqErrorLogLevel = fmt.Errorf("MoqErrorLogLevel")
@@ -8819,6 +9244,25 @@ func (err MoqErrorAudio) Error() string {
 
 func (self MoqErrorAudio) Is(target error) bool {
 	return target == ErrMoqErrorAudio
+}
+
+type MoqErrorVideo struct {
+	message string
+}
+
+func NewMoqErrorVideo() *MoqError {
+	return &MoqError{err: &MoqErrorVideo{}}
+}
+
+func (e MoqErrorVideo) destroy() {
+}
+
+func (err MoqErrorVideo) Error() string {
+	return fmt.Sprintf("Video: %s", err.message)
+}
+
+func (self MoqErrorVideo) Is(target error) bool {
+	return target == ErrMoqErrorVideo
 }
 
 type MoqErrorUrl struct {
@@ -9201,40 +9645,42 @@ func (c FfiConverterMoqError) Read(reader io.Reader) *MoqError {
 	case 5:
 		return &MoqError{&MoqErrorAudio{message}}
 	case 6:
-		return &MoqError{&MoqErrorUrl{message}}
+		return &MoqError{&MoqErrorVideo{message}}
 	case 7:
-		return &MoqError{&MoqErrorTimeOverflow{message}}
+		return &MoqError{&MoqErrorUrl{message}}
 	case 8:
-		return &MoqError{&MoqErrorLogLevel{message}}
+		return &MoqError{&MoqErrorTimeOverflow{message}}
 	case 9:
-		return &MoqError{&MoqErrorTask{message}}
+		return &MoqError{&MoqErrorLogLevel{message}}
 	case 10:
-		return &MoqError{&MoqErrorJson{message}}
+		return &MoqError{&MoqErrorTask{message}}
 	case 11:
-		return &MoqError{&MoqErrorCancelled{message}}
+		return &MoqError{&MoqErrorJson{message}}
 	case 12:
-		return &MoqError{&MoqErrorClosed{message}}
+		return &MoqError{&MoqErrorCancelled{message}}
 	case 13:
-		return &MoqError{&MoqErrorConnect{message}}
+		return &MoqError{&MoqErrorClosed{message}}
 	case 14:
-		return &MoqError{&MoqErrorBind{message}}
+		return &MoqError{&MoqErrorConnect{message}}
 	case 15:
-		return &MoqError{&MoqErrorReject{message}}
+		return &MoqError{&MoqErrorBind{message}}
 	case 16:
-		return &MoqError{&MoqErrorAlreadyResponded{message}}
+		return &MoqError{&MoqErrorReject{message}}
 	case 17:
-		return &MoqError{&MoqErrorCodec{message}}
+		return &MoqError{&MoqErrorAlreadyResponded{message}}
 	case 18:
-		return &MoqError{&MoqErrorUnauthorized{message}}
+		return &MoqError{&MoqErrorCodec{message}}
 	case 19:
-		return &MoqError{&MoqErrorForbidden{message}}
+		return &MoqError{&MoqErrorUnauthorized{message}}
 	case 20:
-		return &MoqError{&MoqErrorNotFound{message}}
+		return &MoqError{&MoqErrorForbidden{message}}
 	case 21:
-		return &MoqError{&MoqErrorUnsupported{message}}
+		return &MoqError{&MoqErrorNotFound{message}}
 	case 22:
-		return &MoqError{&MoqErrorInvalidRoute{message}}
+		return &MoqError{&MoqErrorUnsupported{message}}
 	case 23:
+		return &MoqError{&MoqErrorInvalidRoute{message}}
+	case 24:
 		return &MoqError{&MoqErrorLog{message}}
 	default:
 		panic(fmt.Sprintf("Unknown error code %d in FfiConverterMoqError.Read()", errorID))
@@ -9254,42 +9700,44 @@ func (c FfiConverterMoqError) Write(writer io.Writer, value *MoqError) {
 		writeInt32(writer, 4)
 	case *MoqErrorAudio:
 		writeInt32(writer, 5)
-	case *MoqErrorUrl:
+	case *MoqErrorVideo:
 		writeInt32(writer, 6)
-	case *MoqErrorTimeOverflow:
+	case *MoqErrorUrl:
 		writeInt32(writer, 7)
-	case *MoqErrorLogLevel:
+	case *MoqErrorTimeOverflow:
 		writeInt32(writer, 8)
-	case *MoqErrorTask:
+	case *MoqErrorLogLevel:
 		writeInt32(writer, 9)
-	case *MoqErrorJson:
+	case *MoqErrorTask:
 		writeInt32(writer, 10)
-	case *MoqErrorCancelled:
+	case *MoqErrorJson:
 		writeInt32(writer, 11)
-	case *MoqErrorClosed:
+	case *MoqErrorCancelled:
 		writeInt32(writer, 12)
-	case *MoqErrorConnect:
+	case *MoqErrorClosed:
 		writeInt32(writer, 13)
-	case *MoqErrorBind:
+	case *MoqErrorConnect:
 		writeInt32(writer, 14)
-	case *MoqErrorReject:
+	case *MoqErrorBind:
 		writeInt32(writer, 15)
-	case *MoqErrorAlreadyResponded:
+	case *MoqErrorReject:
 		writeInt32(writer, 16)
-	case *MoqErrorCodec:
+	case *MoqErrorAlreadyResponded:
 		writeInt32(writer, 17)
-	case *MoqErrorUnauthorized:
+	case *MoqErrorCodec:
 		writeInt32(writer, 18)
-	case *MoqErrorForbidden:
+	case *MoqErrorUnauthorized:
 		writeInt32(writer, 19)
-	case *MoqErrorNotFound:
+	case *MoqErrorForbidden:
 		writeInt32(writer, 20)
-	case *MoqErrorUnsupported:
+	case *MoqErrorNotFound:
 		writeInt32(writer, 21)
-	case *MoqErrorInvalidRoute:
+	case *MoqErrorUnsupported:
 		writeInt32(writer, 22)
-	case *MoqErrorLog:
+	case *MoqErrorInvalidRoute:
 		writeInt32(writer, 23)
+	case *MoqErrorLog:
+		writeInt32(writer, 24)
 	default:
 		_ = variantValue
 		panic(fmt.Sprintf("invalid error value `%v` in FfiConverterMoqError.Write", value))
@@ -9309,6 +9757,8 @@ func (_ FfiDestroyerMoqError) Destroy(value *MoqError) {
 	case MoqErrorJsonTrack:
 		variantValue.destroy()
 	case MoqErrorAudio:
+		variantValue.destroy()
+	case MoqErrorVideo:
 		variantValue.destroy()
 	case MoqErrorUrl:
 		variantValue.destroy()
@@ -9350,6 +9800,187 @@ func (_ FfiDestroyerMoqError) Destroy(value *MoqError) {
 		_ = variantValue
 		panic(fmt.Sprintf("invalid error value `%v` in FfiDestroyerMoqError.Destroy", value))
 	}
+}
+
+// Output video codec.
+//
+// Not every codec has a backend on every machine: H.265 is hardware-only, so
+// publishing it fails where no hardware encoder is available.
+type MoqVideoCodec uint
+
+const (
+	// H.264 / AVC, published as an `avc3` track.
+	MoqVideoCodecH264 MoqVideoCodec = 1
+	// H.265 / HEVC, published as a `hev1` track.
+	MoqVideoCodecH265 MoqVideoCodec = 2
+)
+
+type FfiConverterMoqVideoCodec struct{}
+
+var FfiConverterMoqVideoCodecINSTANCE = FfiConverterMoqVideoCodec{}
+
+func (c FfiConverterMoqVideoCodec) Lift(rb RustBufferI) MoqVideoCodec {
+	return LiftFromRustBuffer[MoqVideoCodec](c, rb)
+}
+
+func (c FfiConverterMoqVideoCodec) Lower(value MoqVideoCodec) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoCodec](c, value)
+}
+
+func (c FfiConverterMoqVideoCodec) LowerExternal(value MoqVideoCodec) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoCodec](c, value))
+}
+func (FfiConverterMoqVideoCodec) Read(reader io.Reader) MoqVideoCodec {
+	id := readInt32(reader)
+	return MoqVideoCodec(id)
+}
+
+func (FfiConverterMoqVideoCodec) Write(writer io.Writer, value MoqVideoCodec) {
+	writeInt32(writer, int32(value))
+}
+
+type FfiDestroyerMoqVideoCodec struct{}
+
+func (_ FfiDestroyerMoqVideoCodec) Destroy(value MoqVideoCodec) {
+}
+
+// Which encoder implementation to use.
+//
+// These bindings compile VideoToolbox (macOS), Media Foundation (Windows), and
+// openh264 (software, everywhere). The Linux hardware codecs (NVENC, VAAPI)
+// are a libmoq-only build option, so Linux here is software-only.
+type MoqVideoEncoderKind interface {
+	Destroy()
+}
+
+// Prefer a platform hardware encoder, falling back to software. On Linux
+// that fallback is the only option these bindings have.
+type MoqVideoEncoderKindAuto struct {
+}
+
+func (e MoqVideoEncoderKindAuto) Destroy() {
+}
+
+// Hardware only; fails if none is available, which on Linux is always.
+type MoqVideoEncoderKindHardware struct {
+}
+
+func (e MoqVideoEncoderKindHardware) Destroy() {
+}
+
+// Software only (openh264, H.264 only).
+type MoqVideoEncoderKindSoftware struct {
+}
+
+func (e MoqVideoEncoderKindSoftware) Destroy() {
+}
+
+// A specific backend that moq-ffi compiles: `"videotoolbox"` (macOS),
+// `"mediafoundation"` (Windows), or `"openh264"` (software, everywhere).
+// Naming one this build lacks fails with a no-encoder error, so reach for
+// this only when [`Auto`](Self::Auto) picks the wrong one.
+type MoqVideoEncoderKindNamed struct {
+	Name string
+}
+
+func (e MoqVideoEncoderKindNamed) Destroy() {
+	FfiDestroyerString{}.Destroy(e.Name)
+}
+
+type FfiConverterMoqVideoEncoderKind struct{}
+
+var FfiConverterMoqVideoEncoderKindINSTANCE = FfiConverterMoqVideoEncoderKind{}
+
+func (c FfiConverterMoqVideoEncoderKind) Lift(rb RustBufferI) MoqVideoEncoderKind {
+	return LiftFromRustBuffer[MoqVideoEncoderKind](c, rb)
+}
+
+func (c FfiConverterMoqVideoEncoderKind) Lower(value MoqVideoEncoderKind) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoEncoderKind](c, value)
+}
+
+func (c FfiConverterMoqVideoEncoderKind) LowerExternal(value MoqVideoEncoderKind) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoEncoderKind](c, value))
+}
+func (FfiConverterMoqVideoEncoderKind) Read(reader io.Reader) MoqVideoEncoderKind {
+	id := readInt32(reader)
+	switch id {
+	case 1:
+		return MoqVideoEncoderKindAuto{}
+	case 2:
+		return MoqVideoEncoderKindHardware{}
+	case 3:
+		return MoqVideoEncoderKindSoftware{}
+	case 4:
+		return MoqVideoEncoderKindNamed{
+			FfiConverterStringINSTANCE.Read(reader),
+		}
+	default:
+		panic(fmt.Sprintf("invalid enum value %v in FfiConverterMoqVideoEncoderKind.Read()", id))
+	}
+}
+
+func (FfiConverterMoqVideoEncoderKind) Write(writer io.Writer, value MoqVideoEncoderKind) {
+	switch variant_value := value.(type) {
+	case MoqVideoEncoderKindAuto:
+		writeInt32(writer, 1)
+	case MoqVideoEncoderKindHardware:
+		writeInt32(writer, 2)
+	case MoqVideoEncoderKindSoftware:
+		writeInt32(writer, 3)
+	case MoqVideoEncoderKindNamed:
+		writeInt32(writer, 4)
+		FfiConverterStringINSTANCE.Write(writer, variant_value.Name)
+	default:
+		_ = variant_value
+		panic(fmt.Sprintf("invalid enum value `%v` in FfiConverterMoqVideoEncoderKind.Write", value))
+	}
+}
+
+type FfiDestroyerMoqVideoEncoderKind struct{}
+
+func (_ FfiDestroyerMoqVideoEncoderKind) Destroy(value MoqVideoEncoderKind) {
+	value.Destroy()
+}
+
+// Pixel layout of the raw frames passed to [`MoqVideoProducer::write`].
+type MoqVideoPixelFormat uint
+
+const (
+	// Tightly-packed planar I420: Y, then U, then V, no row padding
+	// (`width * height * 3 / 2` bytes).
+	MoqVideoPixelFormatI420 MoqVideoPixelFormat = 1
+	// Tightly-packed RGBA, `width * height * 4` bytes, no row padding.
+	MoqVideoPixelFormatRgba MoqVideoPixelFormat = 2
+)
+
+type FfiConverterMoqVideoPixelFormat struct{}
+
+var FfiConverterMoqVideoPixelFormatINSTANCE = FfiConverterMoqVideoPixelFormat{}
+
+func (c FfiConverterMoqVideoPixelFormat) Lift(rb RustBufferI) MoqVideoPixelFormat {
+	return LiftFromRustBuffer[MoqVideoPixelFormat](c, rb)
+}
+
+func (c FfiConverterMoqVideoPixelFormat) Lower(value MoqVideoPixelFormat) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqVideoPixelFormat](c, value)
+}
+
+func (c FfiConverterMoqVideoPixelFormat) LowerExternal(value MoqVideoPixelFormat) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqVideoPixelFormat](c, value))
+}
+func (FfiConverterMoqVideoPixelFormat) Read(reader io.Reader) MoqVideoPixelFormat {
+	id := readInt32(reader)
+	return MoqVideoPixelFormat(id)
+}
+
+func (FfiConverterMoqVideoPixelFormat) Write(writer io.Writer, value MoqVideoPixelFormat) {
+	writeInt32(writer, int32(value))
+}
+
+type FfiDestroyerMoqVideoPixelFormat struct{}
+
+func (_ FfiDestroyerMoqVideoPixelFormat) Destroy(value MoqVideoPixelFormat) {
 }
 
 type FfiConverterOptionalUint32 struct{}
