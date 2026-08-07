@@ -9847,8 +9847,8 @@ func (_ FfiDestroyerMoqVideoCodec) Destroy(value MoqVideoCodec) {
 // Which encoder implementation to use.
 //
 // These bindings compile VideoToolbox (macOS), Media Foundation (Windows), and
-// openh264 (software, everywhere). The Linux hardware codecs (NVENC, VAAPI)
-// are a libmoq-only build option, so Linux here is software-only.
+// openh264 (software, everywhere). NVENC/NVDEC are a libmoq-only build option
+// and VAAPI is opt-in everywhere, so Linux here is software-only.
 type MoqVideoEncoderKind interface {
 	Destroy()
 }
