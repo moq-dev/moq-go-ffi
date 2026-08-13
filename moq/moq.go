@@ -1023,7 +1023,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video()
 		})
-		if checksum != 50170 {
+		if checksum != 58624 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video: UniFFI API checksum mismatch")
 		}
@@ -1350,6 +1350,24 @@ func uniffiCheckChecksums() {
 		if checksum != 63846 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_cancel: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqrequest_path()
+		})
+		if checksum != 52535 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_path: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqrequest_query()
+		})
+		if checksum != 18056 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_query: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -3151,9 +3169,9 @@ type MoqBroadcastProducerInterface interface {
 	//
 	// The encoder opens here, so an unsupported codec, resolution, or backend
 	// fails now rather than on the first frame. The track is named after the
-	// codec (`.avc3` / `.hev1`) and its catalog rendition appears once the first
-	// keyframe has been encoded, which is where the resolution and codec string
-	// come from.
+	// codec (`.avc3` / `.hev1`) and its catalog rendition is published
+	// immediately, read out of the encoder rather than guessed, so a subscriber
+	// can find the track before a frame is written to it.
 	PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error)
 }
 type MoqBroadcastProducer struct {
@@ -3443,9 +3461,9 @@ func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoPropert
 //
 // The encoder opens here, so an unsupported codec, resolution, or backend
 // fails now rather than on the first frame. The track is named after the
-// codec (`.avc3` / `.hev1`) and its catalog rendition appears once the first
-// keyframe has been encoded, which is where the resolution and codec string
-// come from.
+// codec (`.avc3` / `.hev1`) and its catalog rendition is published
+// immediately, read out of the encoder rather than guessed, so a subscriber
+// can find the track before a frame is written to it.
 func (_self *MoqBroadcastProducer) PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -5650,6 +5668,10 @@ type MoqRequestInterface interface {
 	Accept() (*MoqSession, error)
 	// Cancel any in-flight `accept()` or `reject()` call.
 	Cancel()
+	// The query-free request path, or empty for the root/missing path.
+	Path() string
+	// The encoded request query without the leading `?`, if present.
+	Query() *string
 	// Reject the session with the given HTTP status code.
 	//
 	// Returns `AlreadyResponded` if `accept()` or `reject()` has already been called.
@@ -5716,6 +5738,30 @@ func (_self *MoqRequest) Cancel() {
 			_pointer, _uniffiStatus)
 		return false
 	})
+}
+
+// The query-free request path, or empty for the root/missing path.
+func (_self *MoqRequest) Path() string {
+	_pointer := _self.ffiObject.incrementPointer("*MoqRequest")
+	defer _self.ffiObject.decrementPointer()
+	return FfiConverterStringINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqrequest_path(
+				_pointer, _uniffiStatus),
+		}
+	}))
+}
+
+// The encoded request query without the leading `?`, if present.
+func (_self *MoqRequest) Query() *string {
+	_pointer := _self.ffiObject.incrementPointer("*MoqRequest")
+	defer _self.ffiObject.decrementPointer()
+	return FfiConverterOptionalStringINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqrequest_query(
+				_pointer, _uniffiStatus),
+		}
+	}))
 }
 
 // Reject the session with the given HTTP status code.

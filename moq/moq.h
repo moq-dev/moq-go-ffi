@@ -1211,6 +1211,16 @@ uint64_t uniffi_moq_ffi_fn_method_moqrequest_accept(uint64_t ptr
 void uniffi_moq_ffi_fn_method_moqrequest_cancel(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_PATH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_PATH
+RustBuffer uniffi_moq_ffi_fn_method_moqrequest_path(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_QUERY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_QUERY
+RustBuffer uniffi_moq_ffi_fn_method_moqrequest_query(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_REJECT
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQREQUEST_REJECT
 uint64_t uniffi_moq_ffi_fn_method_moqrequest_reject(uint64_t ptr, uint16_t code
@@ -2359,6 +2369,18 @@ uint16_t uniffi_moq_ffi_checksum_method_moqrequest_accept(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_CANCEL
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_CANCEL
 uint16_t uniffi_moq_ffi_checksum_method_moqrequest_cancel(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_PATH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_PATH
+uint16_t uniffi_moq_ffi_checksum_method_moqrequest_path(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_QUERY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQREQUEST_QUERY
+uint16_t uniffi_moq_ffi_checksum_method_moqrequest_query(void
     
 );
 #endif
