@@ -436,6 +436,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_media_group()
+		})
+		if checksum != 19442 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_media_group: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_route()
 		})
 		if checksum != 16738 {
@@ -558,6 +567,33 @@ func uniffiCheckChecksums() {
 		if checksum != 49285 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaconsumer_next: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_cancel()
+		})
+		if checksum != 24598 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_cancel: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_next()
+		})
+		if checksum != 57043 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_next: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_sequence()
+		})
+		if checksum != 12408 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_sequence: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -807,7 +843,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast()
 		})
-		if checksum != 54838 {
+		if checksum != 12781 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast: UniFFI API checksum mismatch")
 		}
@@ -816,7 +852,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast()
 		})
-		if checksum != 63880 {
+		if checksum != 42600 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast: UniFFI API checksum mismatch")
 		}
@@ -2595,6 +2631,12 @@ type MoqBroadcastConsumerInterface interface {
 	// otherwise the request waits for a dynamic producer to serve it. The returned
 	// group may still be in progress, so read frames until `read_frame()` returns `None`.
 	FetchGroup(name string, sequence uint64, options *MoqFetchGroupOptions) (*MoqGroupConsumer, error)
+	// Fetch one group and decode its track container into media frames.
+	//
+	// Unlike [`Self::subscribe_media`], this does not create a live subscription or apply
+	// latency-based group skipping. The returned consumer reads exactly the requested group
+	// until [`MoqMediaGroupConsumer::next`] returns `None`.
+	FetchMediaGroup(name string, sequence uint64, container MoqContainer, options *MoqFetchGroupOptions) (*MoqMediaGroupConsumer, error)
 	// The route the broadcast currently takes to reach this origin.
 	Route() MoqRoute
 	// Watch the broadcast's route for changes.
@@ -2686,6 +2728,44 @@ func (_self *MoqBroadcastConsumer) FetchGroup(name string, sequence uint64, opti
 		},
 		C.uniffi_moq_ffi_fn_method_moqbroadcastconsumer_fetch_group(
 			_pointer, FfiConverterStringINSTANCE.Lower(name), FfiConverterUint64INSTANCE.Lower(sequence), FfiConverterOptionalMoqFetchGroupOptionsINSTANCE.Lower(options)),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_u64(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_u64(handle)
+		},
+	)
+
+	if err == nil {
+		return res, nil
+	}
+
+	return res, err
+}
+
+// Fetch one group and decode its track container into media frames.
+//
+// Unlike [`Self::subscribe_media`], this does not create a live subscription or apply
+// latency-based group skipping. The returned consumer reads exactly the requested group
+// until [`MoqMediaGroupConsumer::next`] returns `None`.
+func (_self *MoqBroadcastConsumer) FetchMediaGroup(name string, sequence uint64, container MoqContainer, options *MoqFetchGroupOptions) (*MoqMediaGroupConsumer, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastConsumer")
+	defer _self.ffiObject.decrementPointer()
+	res, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+			res := C.ffi_moq_ffi_rust_future_complete_u64(handle, status)
+			return res
+		},
+		// liftFn
+		func(ffi C.uint64_t) *MoqMediaGroupConsumer {
+			return FfiConverterMoqMediaGroupConsumerINSTANCE.Lift(ffi)
+		},
+		C.uniffi_moq_ffi_fn_method_moqbroadcastconsumer_fetch_media_group(
+			_pointer, FfiConverterStringINSTANCE.Lower(name), FfiConverterUint64INSTANCE.Lower(sequence), FfiConverterMoqContainerINSTANCE.Lower(container), FfiConverterOptionalMoqFetchGroupOptionsINSTANCE.Lower(options)),
 		// pollFn
 		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
 			C.ffi_moq_ffi_rust_future_poll_u64(handle, continuation, data)
@@ -4969,6 +5049,135 @@ func (_ FfiDestroyerMoqMediaConsumer) Destroy(value *MoqMediaConsumer) {
 	value.Destroy()
 }
 
+// A finite, container-decoded media group returned by
+// [`MoqBroadcastConsumer::fetch_media_group`].
+type MoqMediaGroupConsumerInterface interface {
+	// Cancel all current and future `next()` calls.
+	Cancel()
+	// Read the next decoded media frame, or `None` when the group ends.
+	Next() (*MoqMediaFrame, error)
+	// The sequence number of this group within the track.
+	Sequence() uint64
+}
+
+// A finite, container-decoded media group returned by
+// [`MoqBroadcastConsumer::fetch_media_group`].
+type MoqMediaGroupConsumer struct {
+	ffiObject FfiObject
+}
+
+// Cancel all current and future `next()` calls.
+func (_self *MoqMediaGroupConsumer) Cancel() {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaGroupConsumer")
+	defer _self.ffiObject.decrementPointer()
+	rustCall(func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqmediagroupconsumer_cancel(
+			_pointer, _uniffiStatus)
+		return false
+	})
+}
+
+// Read the next decoded media frame, or `None` when the group ends.
+func (_self *MoqMediaGroupConsumer) Next() (*MoqMediaFrame, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaGroupConsumer")
+	defer _self.ffiObject.decrementPointer()
+	res, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) RustBufferI {
+			res := C.ffi_moq_ffi_rust_future_complete_rust_buffer(handle, status)
+			return GoRustBuffer{
+				inner: res,
+			}
+		},
+		// liftFn
+		func(ffi RustBufferI) *MoqMediaFrame {
+			return FfiConverterOptionalMoqMediaFrameINSTANCE.Lift(ffi)
+		},
+		C.uniffi_moq_ffi_fn_method_moqmediagroupconsumer_next(
+			_pointer),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_rust_buffer(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_rust_buffer(handle)
+		},
+	)
+
+	if err == nil {
+		return res, nil
+	}
+
+	return res, err
+}
+
+// The sequence number of this group within the track.
+func (_self *MoqMediaGroupConsumer) Sequence() uint64 {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaGroupConsumer")
+	defer _self.ffiObject.decrementPointer()
+	return FfiConverterUint64INSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqmediagroupconsumer_sequence(
+			_pointer, _uniffiStatus)
+	}))
+}
+func (object *MoqMediaGroupConsumer) Destroy() {
+	runtime.SetFinalizer(object, nil)
+	object.ffiObject.destroy()
+}
+
+type FfiConverterMoqMediaGroupConsumer struct{}
+
+var FfiConverterMoqMediaGroupConsumerINSTANCE = FfiConverterMoqMediaGroupConsumer{}
+
+func (c FfiConverterMoqMediaGroupConsumer) Lift(handle C.uint64_t) *MoqMediaGroupConsumer {
+	result := &MoqMediaGroupConsumer{
+		newFfiObject(
+			handle,
+			func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+				return C.uniffi_moq_ffi_fn_clone_moqmediagroupconsumer(handle, status)
+			},
+			func(handle C.uint64_t, status *C.RustCallStatus) {
+				C.uniffi_moq_ffi_fn_free_moqmediagroupconsumer(handle, status)
+			},
+		),
+	}
+	runtime.SetFinalizer(result, (*MoqMediaGroupConsumer).Destroy)
+	return result
+}
+
+func (c FfiConverterMoqMediaGroupConsumer) Read(reader io.Reader) *MoqMediaGroupConsumer {
+	return c.Lift(C.uint64_t(readUint64(reader)))
+}
+
+func (c FfiConverterMoqMediaGroupConsumer) Lower(value *MoqMediaGroupConsumer) C.uint64_t {
+	// TODO: this is bad - all synchronization from ObjectRuntime.go is discarded here,
+	// because the handle will be decremented immediately after this function returns,
+	// and someone will be left holding onto a non-locked handle.
+	handle := value.ffiObject.incrementPointer("*MoqMediaGroupConsumer")
+	defer value.ffiObject.decrementPointer()
+	return handle
+}
+
+func (c FfiConverterMoqMediaGroupConsumer) Write(writer io.Writer, value *MoqMediaGroupConsumer) {
+	writeUint64(writer, uint64(c.Lower(value)))
+}
+
+func LiftFromExternalMoqMediaGroupConsumer(handle uint64) *MoqMediaGroupConsumer {
+	return FfiConverterMoqMediaGroupConsumerINSTANCE.Lift(C.uint64_t(handle))
+}
+
+func LowerToExternalMoqMediaGroupConsumer(value *MoqMediaGroupConsumer) uint64 {
+	return uint64(FfiConverterMoqMediaGroupConsumerINSTANCE.Lower(value))
+}
+
+type FfiDestroyerMoqMediaGroupConsumer struct{}
+
+func (_ FfiDestroyerMoqMediaGroupConsumer) Destroy(value *MoqMediaGroupConsumer) {
+	value.Destroy()
+}
+
 type MoqMediaProducerInterface interface {
 	// Finish this media track and finalize encoding.
 	Finish() error
@@ -5269,6 +5478,9 @@ type MoqOriginConsumerInterface interface {
 	// Subscribe to all broadcast announcements under a prefix.
 	Announced(prefix string) (*MoqAnnounced, error)
 	// Wait for a specific broadcast to be announced by path.
+	//
+	// This is how you resolve a path right after connecting: announcements arrive over the
+	// session after it opens, so `request_broadcast` on its own races them.
 	AnnouncedBroadcast(path string) (*MoqAnnouncedBroadcast, error)
 	// Request a broadcast by path, resolving as soon as it can be served.
 	//
@@ -5277,6 +5489,9 @@ type MoqOriginConsumerInterface interface {
 	// errors if nothing can serve it. Unlike `announced_broadcast`, this does *not* wait
 	// indefinitely for a future announcement: it resolves or fails based on what is
 	// announced now plus any dynamic fallback. Drop the returned future to cancel.
+	//
+	// Calling this straight after connecting therefore races the session's announcements
+	// and can report a live broadcast as unroutable. Await `announced_broadcast` first.
 	RequestBroadcast(path string) (*MoqBroadcastConsumer, error)
 }
 type MoqOriginConsumer struct {
@@ -5300,6 +5515,9 @@ func (_self *MoqOriginConsumer) Announced(prefix string) (*MoqAnnounced, error) 
 }
 
 // Wait for a specific broadcast to be announced by path.
+//
+// This is how you resolve a path right after connecting: announcements arrive over the
+// session after it opens, so `request_broadcast` on its own races them.
 func (_self *MoqOriginConsumer) AnnouncedBroadcast(path string) (*MoqAnnouncedBroadcast, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqOriginConsumer")
 	defer _self.ffiObject.decrementPointer()
@@ -5322,6 +5540,9 @@ func (_self *MoqOriginConsumer) AnnouncedBroadcast(path string) (*MoqAnnouncedBr
 // errors if nothing can serve it. Unlike `announced_broadcast`, this does *not* wait
 // indefinitely for a future announcement: it resolves or fails based on what is
 // announced now plus any dynamic fallback. Drop the returned future to cancel.
+//
+// Calling this straight after connecting therefore races the session's announcements
+// and can report a live broadcast as unroutable. Await `announced_broadcast` first.
 func (_self *MoqOriginConsumer) RequestBroadcast(path string) (*MoqBroadcastConsumer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqOriginConsumer")
 	defer _self.ffiObject.decrementPointer()
