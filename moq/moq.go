@@ -3835,6 +3835,11 @@ func (_ FfiDestroyerMoqCatalogConsumer) Destroy(value *MoqCatalogConsumer) {
 	value.Destroy()
 }
 
+// Builds a [`MoqSession`]: configure it, then [`connect`](Self::connect).
+//
+// The configuration differs by target, because the transport does. Native builds expose
+// the QUIC socket and TLS trust store; the browser owns both, so a wasm build exposes
+// only the certificate hashes WebTransport accepts.
 type MoqClientInterface interface {
 	// Cancel all current and future `connect()` calls.
 	Cancel()
@@ -3890,6 +3895,12 @@ type MoqClientInterface interface {
 	// `set_tls_roots`, or `false` to trust only custom roots.
 	SetTlsSystemRoots(systemRoots bool)
 }
+
+// Builds a [`MoqSession`]: configure it, then [`connect`](Self::connect).
+//
+// The configuration differs by target, because the transport does. Native builds expose
+// the QUIC socket and TLS trust store; the browser owns both, so a wasm build exposes
+// only the certificate hashes WebTransport accepts.
 type MoqClient struct {
 	ffiObject FfiObject
 }
@@ -8860,8 +8871,10 @@ type MoqVideo struct {
 	Coded         *MoqDimensions
 	DisplayAspect *MoqDimensions
 	Bitrate       *uint64
-	Framerate     *float64
-	Container     MoqContainer
+	// Whether the publisher recommends temporarily avoiding this rendition.
+	Stalled   bool
+	Framerate *float64
+	Container MoqContainer
 }
 
 func (r *MoqVideo) Destroy() {
@@ -8870,6 +8883,7 @@ func (r *MoqVideo) Destroy() {
 	FfiDestroyerOptionalMoqDimensions{}.Destroy(r.Coded)
 	FfiDestroyerOptionalMoqDimensions{}.Destroy(r.DisplayAspect)
 	FfiDestroyerOptionalUint64{}.Destroy(r.Bitrate)
+	FfiDestroyerBool{}.Destroy(r.Stalled)
 	FfiDestroyerOptionalFloat64{}.Destroy(r.Framerate)
 	FfiDestroyerMoqContainer{}.Destroy(r.Container)
 }
@@ -8889,6 +8903,7 @@ func (c FfiConverterMoqVideo) Read(reader io.Reader) MoqVideo {
 		FfiConverterOptionalMoqDimensionsINSTANCE.Read(reader),
 		FfiConverterOptionalMoqDimensionsINSTANCE.Read(reader),
 		FfiConverterOptionalUint64INSTANCE.Read(reader),
+		FfiConverterBoolINSTANCE.Read(reader),
 		FfiConverterOptionalFloat64INSTANCE.Read(reader),
 		FfiConverterMoqContainerINSTANCE.Read(reader),
 	}
@@ -8908,6 +8923,7 @@ func (c FfiConverterMoqVideo) Write(writer io.Writer, value MoqVideo) {
 	FfiConverterOptionalMoqDimensionsINSTANCE.Write(writer, value.Coded)
 	FfiConverterOptionalMoqDimensionsINSTANCE.Write(writer, value.DisplayAspect)
 	FfiConverterOptionalUint64INSTANCE.Write(writer, value.Bitrate)
+	FfiConverterBoolINSTANCE.Write(writer, value.Stalled)
 	FfiConverterOptionalFloat64INSTANCE.Write(writer, value.Framerate)
 	FfiConverterMoqContainerINSTANCE.Write(writer, value.Container)
 }
