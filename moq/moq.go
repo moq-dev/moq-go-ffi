@@ -375,7 +375,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_func_moq_log_level()
 		})
-		if checksum != 27140 {
+		if checksum != 24625 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_func_moq_log_level: UniFFI API checksum mismatch")
 		}
@@ -384,7 +384,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioconsumer_cancel()
 		})
-		if checksum != 33004 {
+		if checksum != 31743 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -393,7 +393,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioconsumer_next()
 		})
-		if checksum != 55387 {
+		if checksum != 247 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -402,16 +402,52 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_finish()
 		})
-		if checksum != 41749 {
+		if checksum != 6287 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_finish: UniFFI API checksum mismatch")
 		}
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_name()
+		})
+		if checksum != 63111 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_name: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_reset_epoch()
+		})
+		if checksum != 57448 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_reset_epoch: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_unused()
+		})
+		if checksum != 26060 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_unused: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_used()
+		})
+		if checksum != 36634 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_used: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_write()
 		})
-		if checksum != 49517 {
+		if checksum != 22094 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_write: UniFFI API checksum mismatch")
 		}
@@ -420,7 +456,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_audio()
 		})
-		if checksum != 50677 {
+		if checksum != 51433 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_audio: UniFFI API checksum mismatch")
 		}
@@ -429,7 +465,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_group()
 		})
-		if checksum != 28258 {
+		if checksum != 18633 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_group: UniFFI API checksum mismatch")
 		}
@@ -438,7 +474,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_media_group()
 		})
-		if checksum != 19442 {
+		if checksum != 11148 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_fetch_media_group: UniFFI API checksum mismatch")
 		}
@@ -447,7 +483,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_route()
 		})
-		if checksum != 16738 {
+		if checksum != 22082 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_route: UniFFI API checksum mismatch")
 		}
@@ -456,7 +492,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_route_updates()
 		})
-		if checksum != 5829 {
+		if checksum != 53247 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_route_updates: UniFFI API checksum mismatch")
 		}
@@ -465,7 +501,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_catalog()
 		})
-		if checksum != 47602 {
+		if checksum != 34722 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_catalog: UniFFI API checksum mismatch")
 		}
@@ -474,7 +510,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_media()
 		})
-		if checksum != 1303 {
+		if checksum != 19493 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_media: UniFFI API checksum mismatch")
 		}
@@ -483,7 +519,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_track()
 		})
-		if checksum != 16615 {
+		if checksum != 37381 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_track: UniFFI API checksum mismatch")
 		}
@@ -492,7 +528,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_json_snapshot()
 		})
-		if checksum != 29757 {
+		if checksum != 46473 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_json_snapshot: UniFFI API checksum mismatch")
 		}
@@ -501,7 +537,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_json_stream()
 		})
-		if checksum != 53781 {
+		if checksum != 3028 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_subscribe_json_stream: UniFFI API checksum mismatch")
 		}
@@ -510,7 +546,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqcatalogconsumer_cancel()
 		})
-		if checksum != 1059 {
+		if checksum != 37402 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqcatalogconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -519,7 +555,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqcatalogconsumer_next()
 		})
-		if checksum != 42881 {
+		if checksum != 33133 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqcatalogconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -528,7 +564,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupconsumer_cancel()
 		})
-		if checksum != 21782 {
+		if checksum != 26278 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -537,7 +573,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupconsumer_read_frame()
 		})
-		if checksum != 43591 {
+		if checksum != 26363 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupconsumer_read_frame: UniFFI API checksum mismatch")
 		}
@@ -546,7 +582,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupconsumer_sequence()
 		})
-		if checksum != 61070 {
+		if checksum != 46527 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupconsumer_sequence: UniFFI API checksum mismatch")
 		}
@@ -555,7 +591,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaconsumer_cancel()
 		})
-		if checksum != 12542 {
+		if checksum != 35497 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -564,7 +600,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaconsumer_next()
 		})
-		if checksum != 49285 {
+		if checksum != 42389 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -573,7 +609,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_cancel()
 		})
-		if checksum != 24598 {
+		if checksum != 51108 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -582,7 +618,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_next()
 		})
-		if checksum != 57043 {
+		if checksum != 22636 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -591,7 +627,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_sequence()
 		})
-		if checksum != 12408 {
+		if checksum != 22332 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediagroupconsumer_sequence: UniFFI API checksum mismatch")
 		}
@@ -600,7 +636,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqroutewatch_cancel()
 		})
-		if checksum != 61300 {
+		if checksum != 58981 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqroutewatch_cancel: UniFFI API checksum mismatch")
 		}
@@ -609,7 +645,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqroutewatch_next()
 		})
-		if checksum != 34673 {
+		if checksum != 59843 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqroutewatch_next: UniFFI API checksum mismatch")
 		}
@@ -618,7 +654,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_cancel()
 		})
-		if checksum != 13373 {
+		if checksum != 61290 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -627,7 +663,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_info()
 		})
-		if checksum != 42913 {
+		if checksum != 46426 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_info: UniFFI API checksum mismatch")
 		}
@@ -636,7 +672,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_next_group()
 		})
-		if checksum != 38789 {
+		if checksum != 6710 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_next_group: UniFFI API checksum mismatch")
 		}
@@ -645,7 +681,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_read_frame()
 		})
-		if checksum != 13112 {
+		if checksum != 58741 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_read_frame: UniFFI API checksum mismatch")
 		}
@@ -654,7 +690,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_datagram()
 		})
-		if checksum != 58393 {
+		if checksum != 16161 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_datagram: UniFFI API checksum mismatch")
 		}
@@ -663,7 +699,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_group()
 		})
-		if checksum != 26719 {
+		if checksum != 831 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_group: UniFFI API checksum mismatch")
 		}
@@ -672,7 +708,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_update()
 		})
-		if checksum != 37123 {
+		if checksum != 24851 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_update: UniFFI API checksum mismatch")
 		}
@@ -681,7 +717,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_cancel()
 		})
-		if checksum != 20318 {
+		if checksum != 44009 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -690,7 +726,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_next()
 		})
-		if checksum != 40200 {
+		if checksum != 64727 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -699,7 +735,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_finish()
 		})
-		if checksum != 44519 {
+		if checksum != 42593 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -708,7 +744,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_update()
 		})
-		if checksum != 45946 {
+		if checksum != 18037 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_update: UniFFI API checksum mismatch")
 		}
@@ -717,7 +753,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonstreamconsumer_cancel()
 		})
-		if checksum != 60362 {
+		if checksum != 13497 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamconsumer_cancel: UniFFI API checksum mismatch")
 		}
@@ -726,7 +762,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonstreamconsumer_next()
 		})
-		if checksum != 30879 {
+		if checksum != 7523 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamconsumer_next: UniFFI API checksum mismatch")
 		}
@@ -735,7 +771,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_append()
 		})
-		if checksum != 29352 {
+		if checksum != 12571 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_append: UniFFI API checksum mismatch")
 		}
@@ -744,7 +780,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_finish()
 		})
-		if checksum != 52088 {
+		if checksum != 51459 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -753,7 +789,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannounced_cancel()
 		})
-		if checksum != 11787 {
+		if checksum != 54065 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannounced_cancel: UniFFI API checksum mismatch")
 		}
@@ -762,7 +798,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannounced_next()
 		})
-		if checksum != 30814 {
+		if checksum != 25345 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannounced_next: UniFFI API checksum mismatch")
 		}
@@ -771,7 +807,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_available()
 		})
-		if checksum != 46046 {
+		if checksum != 13508 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_available: UniFFI API checksum mismatch")
 		}
@@ -780,7 +816,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_cancel()
 		})
-		if checksum != 63780 {
+		if checksum != 59914 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_cancel: UniFFI API checksum mismatch")
 		}
@@ -789,7 +825,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannouncement_broadcast()
 		})
-		if checksum != 8318 {
+		if checksum != 51237 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannouncement_broadcast: UniFFI API checksum mismatch")
 		}
@@ -798,7 +834,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannouncement_path()
 		})
-		if checksum != 33642 {
+		if checksum != 59733 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannouncement_path: UniFFI API checksum mismatch")
 		}
@@ -807,7 +843,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastrequest_abort()
 		})
-		if checksum != 38615 {
+		if checksum != 42319 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastrequest_abort: UniFFI API checksum mismatch")
 		}
@@ -816,7 +852,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastrequest_accept()
 		})
-		if checksum != 4831 {
+		if checksum != 36946 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastrequest_accept: UniFFI API checksum mismatch")
 		}
@@ -825,7 +861,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastrequest_path()
 		})
-		if checksum != 28555 {
+		if checksum != 6534 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastrequest_path: UniFFI API checksum mismatch")
 		}
@@ -834,7 +870,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced()
 		})
-		if checksum != 65430 {
+		if checksum != 48353 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced: UniFFI API checksum mismatch")
 		}
@@ -843,7 +879,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast()
 		})
-		if checksum != 12781 {
+		if checksum != 18225 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast: UniFFI API checksum mismatch")
 		}
@@ -852,7 +888,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast()
 		})
-		if checksum != 42600 {
+		if checksum != 29590 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast: UniFFI API checksum mismatch")
 		}
@@ -861,7 +897,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqorigindynamic_cancel()
 		})
-		if checksum != 55027 {
+		if checksum != 60877 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqorigindynamic_cancel: UniFFI API checksum mismatch")
 		}
@@ -870,7 +906,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqorigindynamic_requested_broadcast()
 		})
-		if checksum != 53494 {
+		if checksum != 26471 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqorigindynamic_requested_broadcast: UniFFI API checksum mismatch")
 		}
@@ -879,7 +915,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginproducer_consume()
 		})
-		if checksum != 34292 {
+		if checksum != 52357 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginproducer_consume: UniFFI API checksum mismatch")
 		}
@@ -888,7 +924,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginproducer_create_broadcast()
 		})
-		if checksum != 7635 {
+		if checksum != 48871 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginproducer_create_broadcast: UniFFI API checksum mismatch")
 		}
@@ -897,7 +933,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginproducer_dynamic()
 		})
-		if checksum != 19783 {
+		if checksum != 40207 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginproducer_dynamic: UniFFI API checksum mismatch")
 		}
@@ -906,7 +942,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastdynamic_cancel()
 		})
-		if checksum != 41601 {
+		if checksum != 61176 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastdynamic_cancel: UniFFI API checksum mismatch")
 		}
@@ -915,7 +951,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastdynamic_requested_track()
 		})
-		if checksum != 43684 {
+		if checksum != 12071 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastdynamic_requested_track: UniFFI API checksum mismatch")
 		}
@@ -924,7 +960,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_audio()
 		})
-		if checksum != 39786 {
+		if checksum != 20708 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_audio: UniFFI API checksum mismatch")
 		}
@@ -933,7 +969,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_snapshot()
 		})
-		if checksum != 53223 {
+		if checksum != 51036 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_snapshot: UniFFI API checksum mismatch")
 		}
@@ -942,7 +978,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_stream()
 		})
-		if checksum != 37537 {
+		if checksum != 47317 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_stream: UniFFI API checksum mismatch")
 		}
@@ -951,7 +987,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_consume()
 		})
-		if checksum != 46595 {
+		if checksum != 27634 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_consume: UniFFI API checksum mismatch")
 		}
@@ -960,7 +996,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_dynamic()
 		})
-		if checksum != 46433 {
+		if checksum != 55635 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_dynamic: UniFFI API checksum mismatch")
 		}
@@ -969,7 +1005,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_finish()
 		})
-		if checksum != 9168 {
+		if checksum != 7183 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -978,7 +1014,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media()
 		})
-		if checksum != 44712 {
+		if checksum != 43231 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media: UniFFI API checksum mismatch")
 		}
@@ -987,7 +1023,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media_on_track()
 		})
-		if checksum != 61309 {
+		if checksum != 54415 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media_on_track: UniFFI API checksum mismatch")
 		}
@@ -996,7 +1032,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media_stream()
 		})
-		if checksum != 25992 {
+		if checksum != 60403 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_media_stream: UniFFI API checksum mismatch")
 		}
@@ -1005,7 +1041,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_track()
 		})
-		if checksum != 41835 {
+		if checksum != 41634 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_track: UniFFI API checksum mismatch")
 		}
@@ -1014,7 +1050,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_remove_catalog_section()
 		})
-		if checksum != 42326 {
+		if checksum != 8608 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_remove_catalog_section: UniFFI API checksum mismatch")
 		}
@@ -1023,7 +1059,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_announce()
 		})
-		if checksum != 18686 {
+		if checksum != 5421 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_announce: UniFFI API checksum mismatch")
 		}
@@ -1032,7 +1068,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_catalog_section()
 		})
-		if checksum != 8811 {
+		if checksum != 25735 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_catalog_section: UniFFI API checksum mismatch")
 		}
@@ -1041,7 +1077,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_route()
 		})
-		if checksum != 2362 {
+		if checksum != 48187 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_route: UniFFI API checksum mismatch")
 		}
@@ -1050,7 +1086,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_video_properties()
 		})
-		if checksum != 30609 {
+		if checksum != 9178 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_set_video_properties: UniFFI API checksum mismatch")
 		}
@@ -1059,7 +1095,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video()
 		})
-		if checksum != 58624 {
+		if checksum != 10703 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_video: UniFFI API checksum mismatch")
 		}
@@ -1068,7 +1104,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_abort()
 		})
-		if checksum != 22408 {
+		if checksum != 59787 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupproducer_abort: UniFFI API checksum mismatch")
 		}
@@ -1077,7 +1113,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_consume()
 		})
-		if checksum != 12315 {
+		if checksum != 53274 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupproducer_consume: UniFFI API checksum mismatch")
 		}
@@ -1086,7 +1122,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_finish()
 		})
-		if checksum != 39760 {
+		if checksum != 35444 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -1095,7 +1131,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_sequence()
 		})
-		if checksum != 11821 {
+		if checksum != 21067 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupproducer_sequence: UniFFI API checksum mismatch")
 		}
@@ -1104,7 +1140,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgroupproducer_write_frame()
 		})
-		if checksum != 42697 {
+		if checksum != 2442 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgroupproducer_write_frame: UniFFI API checksum mismatch")
 		}
@@ -1113,7 +1149,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgrouprequest_abort()
 		})
-		if checksum != 53199 {
+		if checksum != 26970 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgrouprequest_abort: UniFFI API checksum mismatch")
 		}
@@ -1122,7 +1158,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgrouprequest_accept()
 		})
-		if checksum != 38986 {
+		if checksum != 48242 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgrouprequest_accept: UniFFI API checksum mismatch")
 		}
@@ -1131,7 +1167,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgrouprequest_priority()
 		})
-		if checksum != 30080 {
+		if checksum != 1745 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgrouprequest_priority: UniFFI API checksum mismatch")
 		}
@@ -1140,7 +1176,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqgrouprequest_sequence()
 		})
-		if checksum != 34701 {
+		if checksum != 29523 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqgrouprequest_sequence: UniFFI API checksum mismatch")
 		}
@@ -1149,7 +1185,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_finish()
 		})
-		if checksum != 13508 {
+		if checksum != 8039 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -1158,7 +1194,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_name()
 		})
-		if checksum != 35932 {
+		if checksum != 55742 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_name: UniFFI API checksum mismatch")
 		}
@@ -1167,7 +1203,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_unused()
 		})
-		if checksum != 65253 {
+		if checksum != 27885 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -1176,7 +1212,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_used()
 		})
-		if checksum != 29546 {
+		if checksum != 19042 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_used: UniFFI API checksum mismatch")
 		}
@@ -1185,7 +1221,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_write_frame()
 		})
-		if checksum != 46299 {
+		if checksum != 60790 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_write_frame: UniFFI API checksum mismatch")
 		}
@@ -1194,7 +1230,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediastreamproducer_finish()
 		})
-		if checksum != 44939 {
+		if checksum != 36771 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediastreamproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -1203,7 +1239,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediastreamproducer_write()
 		})
-		if checksum != 47083 {
+		if checksum != 7686 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediastreamproducer_write: UniFFI API checksum mismatch")
 		}
@@ -1212,7 +1248,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackdynamic_cancel()
 		})
-		if checksum != 7164 {
+		if checksum != 21897 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdynamic_cancel: UniFFI API checksum mismatch")
 		}
@@ -1221,7 +1257,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackdynamic_requested_group()
 		})
-		if checksum != 6073 {
+		if checksum != 63983 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdynamic_requested_group: UniFFI API checksum mismatch")
 		}
@@ -1230,7 +1266,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_abort()
 		})
-		if checksum != 46232 {
+		if checksum != 37537 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_abort: UniFFI API checksum mismatch")
 		}
@@ -1239,7 +1275,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_append_datagram()
 		})
-		if checksum != 35955 {
+		if checksum != 6272 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_append_datagram: UniFFI API checksum mismatch")
 		}
@@ -1248,7 +1284,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_append_group()
 		})
-		if checksum != 28433 {
+		if checksum != 45225 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_append_group: UniFFI API checksum mismatch")
 		}
@@ -1257,7 +1293,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_consume()
 		})
-		if checksum != 23920 {
+		if checksum != 48554 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_consume: UniFFI API checksum mismatch")
 		}
@@ -1266,7 +1302,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_create_group()
 		})
-		if checksum != 8039 {
+		if checksum != 38978 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_create_group: UniFFI API checksum mismatch")
 		}
@@ -1275,7 +1311,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_dynamic()
 		})
-		if checksum != 30887 {
+		if checksum != 58584 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_dynamic: UniFFI API checksum mismatch")
 		}
@@ -1284,7 +1320,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_finish()
 		})
-		if checksum != 8455 {
+		if checksum != 16707 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -1293,7 +1329,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_finish_at()
 		})
-		if checksum != 55850 {
+		if checksum != 24581 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_finish_at: UniFFI API checksum mismatch")
 		}
@@ -1302,7 +1338,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_name()
 		})
-		if checksum != 18320 {
+		if checksum != 14598 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_name: UniFFI API checksum mismatch")
 		}
@@ -1311,7 +1347,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_unused()
 		})
-		if checksum != 40969 {
+		if checksum != 9025 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -1320,7 +1356,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_used()
 		})
-		if checksum != 20539 {
+		if checksum != 36898 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_used: UniFFI API checksum mismatch")
 		}
@@ -1329,7 +1365,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_write_frame()
 		})
-		if checksum != 61798 {
+		if checksum != 18663 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_write_frame: UniFFI API checksum mismatch")
 		}
@@ -1338,7 +1374,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackrequest_abort()
 		})
-		if checksum != 37864 {
+		if checksum != 62713 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackrequest_abort: UniFFI API checksum mismatch")
 		}
@@ -1347,7 +1383,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackrequest_accept()
 		})
-		if checksum != 59540 {
+		if checksum != 16277 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackrequest_accept: UniFFI API checksum mismatch")
 		}
@@ -1356,7 +1392,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackrequest_dynamic()
 		})
-		if checksum != 36895 {
+		if checksum != 24801 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackrequest_dynamic: UniFFI API checksum mismatch")
 		}
@@ -1365,7 +1401,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackrequest_name()
 		})
-		if checksum != 15932 {
+		if checksum != 56715 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackrequest_name: UniFFI API checksum mismatch")
 		}
@@ -1374,7 +1410,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_accept()
 		})
-		if checksum != 35301 {
+		if checksum != 46183 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_accept: UniFFI API checksum mismatch")
 		}
@@ -1383,7 +1419,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_cancel()
 		})
-		if checksum != 63846 {
+		if checksum != 46242 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_cancel: UniFFI API checksum mismatch")
 		}
@@ -1392,7 +1428,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_path()
 		})
-		if checksum != 52535 {
+		if checksum != 48052 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_path: UniFFI API checksum mismatch")
 		}
@@ -1401,7 +1437,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_query()
 		})
-		if checksum != 18056 {
+		if checksum != 23842 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_query: UniFFI API checksum mismatch")
 		}
@@ -1410,7 +1446,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_reject()
 		})
-		if checksum != 28918 {
+		if checksum != 57471 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_reject: UniFFI API checksum mismatch")
 		}
@@ -1419,7 +1455,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_set_consume()
 		})
-		if checksum != 25024 {
+		if checksum != 10143 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_set_consume: UniFFI API checksum mismatch")
 		}
@@ -1428,7 +1464,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_set_publish()
 		})
-		if checksum != 5686 {
+		if checksum != 48930 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_set_publish: UniFFI API checksum mismatch")
 		}
@@ -1437,7 +1473,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_transport()
 		})
-		if checksum != 789 {
+		if checksum != 5942 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_transport: UniFFI API checksum mismatch")
 		}
@@ -1446,7 +1482,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqrequest_url()
 		})
-		if checksum != 34738 {
+		if checksum != 34138 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqrequest_url: UniFFI API checksum mismatch")
 		}
@@ -1455,7 +1491,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_accept()
 		})
-		if checksum != 41383 {
+		if checksum != 62476 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_accept: UniFFI API checksum mismatch")
 		}
@@ -1464,7 +1500,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_cancel()
 		})
-		if checksum != 36526 {
+		if checksum != 379 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_cancel: UniFFI API checksum mismatch")
 		}
@@ -1473,7 +1509,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_cert_fingerprints()
 		})
-		if checksum != 38274 {
+		if checksum != 32082 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_cert_fingerprints: UniFFI API checksum mismatch")
 		}
@@ -1482,7 +1518,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_listen()
 		})
-		if checksum != 19779 {
+		if checksum != 9040 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_listen: UniFFI API checksum mismatch")
 		}
@@ -1491,7 +1527,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_bind()
 		})
-		if checksum != 53276 {
+		if checksum != 60575 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_bind: UniFFI API checksum mismatch")
 		}
@@ -1500,7 +1536,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_consume()
 		})
-		if checksum != 10795 {
+		if checksum != 29005 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_consume: UniFFI API checksum mismatch")
 		}
@@ -1509,7 +1545,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_publish()
 		})
-		if checksum != 48707 {
+		if checksum != 54637 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_publish: UniFFI API checksum mismatch")
 		}
@@ -1518,7 +1554,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_tls_cert()
 		})
-		if checksum != 59890 {
+		if checksum != 6344 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_tls_cert: UniFFI API checksum mismatch")
 		}
@@ -1527,7 +1563,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_tls_generate()
 		})
-		if checksum != 42920 {
+		if checksum != 51810 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_tls_generate: UniFFI API checksum mismatch")
 		}
@@ -1536,7 +1572,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqserver_set_tls_key()
 		})
-		if checksum != 43796 {
+		if checksum != 61191 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqserver_set_tls_key: UniFFI API checksum mismatch")
 		}
@@ -1545,7 +1581,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_cancel()
 		})
-		if checksum != 42343 {
+		if checksum != 48149 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_cancel: UniFFI API checksum mismatch")
 		}
@@ -1554,7 +1590,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_connect()
 		})
-		if checksum != 57228 {
+		if checksum != 27725 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_connect: UniFFI API checksum mismatch")
 		}
@@ -1563,7 +1599,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_bind()
 		})
-		if checksum != 42107 {
+		if checksum != 7248 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_bind: UniFFI API checksum mismatch")
 		}
@@ -1572,7 +1608,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_consume()
 		})
-		if checksum != 55200 {
+		if checksum != 64342 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_consume: UniFFI API checksum mismatch")
 		}
@@ -1581,7 +1617,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_publish()
 		})
-		if checksum != 56893 {
+		if checksum != 29680 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_publish: UniFFI API checksum mismatch")
 		}
@@ -1590,7 +1626,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_cert()
 		})
-		if checksum != 45194 {
+		if checksum != 24223 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_cert: UniFFI API checksum mismatch")
 		}
@@ -1599,7 +1635,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_disable_verify()
 		})
-		if checksum != 17397 {
+		if checksum != 58510 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_disable_verify: UniFFI API checksum mismatch")
 		}
@@ -1608,7 +1644,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_fingerprints()
 		})
-		if checksum != 55328 {
+		if checksum != 48211 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_fingerprints: UniFFI API checksum mismatch")
 		}
@@ -1617,7 +1653,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_key()
 		})
-		if checksum != 13628 {
+		if checksum != 499 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_key: UniFFI API checksum mismatch")
 		}
@@ -1626,7 +1662,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_roots()
 		})
-		if checksum != 54966 {
+		if checksum != 46542 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_roots: UniFFI API checksum mismatch")
 		}
@@ -1635,7 +1671,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqclient_set_tls_system_roots()
 		})
-		if checksum != 42515 {
+		if checksum != 24617 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_system_roots: UniFFI API checksum mismatch")
 		}
@@ -1644,7 +1680,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_cancel()
 		})
-		if checksum != 24930 {
+		if checksum != 29713 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_cancel: UniFFI API checksum mismatch")
 		}
@@ -1653,7 +1689,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_closed()
 		})
-		if checksum != 41657 {
+		if checksum != 53575 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_closed: UniFFI API checksum mismatch")
 		}
@@ -1662,7 +1698,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_consumer()
 		})
-		if checksum != 40339 {
+		if checksum != 62364 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_consumer: UniFFI API checksum mismatch")
 		}
@@ -1671,7 +1707,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_publisher()
 		})
-		if checksum != 24627 {
+		if checksum != 55435 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_publisher: UniFFI API checksum mismatch")
 		}
@@ -1680,7 +1716,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_shutdown()
 		})
-		if checksum != 15895 {
+		if checksum != 820 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_shutdown: UniFFI API checksum mismatch")
 		}
@@ -1689,7 +1725,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_stats()
 		})
-		if checksum != 26506 {
+		if checksum != 15450 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_stats: UniFFI API checksum mismatch")
 		}
@@ -1698,7 +1734,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_cut()
 		})
-		if checksum != 55246 {
+		if checksum != 27669 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_cut: UniFFI API checksum mismatch")
 		}
@@ -1707,25 +1743,52 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_finish()
 		})
-		if checksum != 27116 {
+		if checksum != 59081 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_finish: UniFFI API checksum mismatch")
 		}
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_name()
+		})
+		if checksum != 43551 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_name: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_set_bitrate()
 		})
-		if checksum != 53159 {
+		if checksum != 57197 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_set_bitrate: UniFFI API checksum mismatch")
 		}
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_unused()
+		})
+		if checksum != 30941 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_unused: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_used()
+		})
+		if checksum != 48040 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_used: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_write()
 		})
-		if checksum != 63316 {
+		if checksum != 6141 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_write: UniFFI API checksum mismatch")
 		}
@@ -1734,7 +1797,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_constructor_moqoriginproducer_new()
 		})
-		if checksum != 58041 {
+		if checksum != 54724 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_constructor_moqoriginproducer_new: UniFFI API checksum mismatch")
 		}
@@ -1743,7 +1806,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_constructor_moqbroadcastproducer_new()
 		})
-		if checksum != 48518 {
+		if checksum != 37572 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_constructor_moqbroadcastproducer_new: UniFFI API checksum mismatch")
 		}
@@ -1752,7 +1815,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_constructor_moqserver_new()
 		})
-		if checksum != 36783 {
+		if checksum != 42979 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_constructor_moqserver_new: UniFFI API checksum mismatch")
 		}
@@ -1761,7 +1824,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_constructor_moqclient_new()
 		})
-		if checksum != 62327 {
+		if checksum != 44907 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_constructor_moqclient_new: UniFFI API checksum mismatch")
 		}
@@ -2529,6 +2592,17 @@ func (_ FfiDestroyerMoqAudioConsumer) Destroy(value *MoqAudioConsumer) {
 // passed at publish time.
 type MoqAudioProducerInterface interface {
 	Finish() error
+	// Return the name of this audio track.
+	Name() (string, error)
+	// Re-anchor the timeline to the next frame's timestamp.
+	//
+	// Call this before writing after an idle gap so the gap remains visible in
+	// the audio PTS instead of being compressed out by the running sample count.
+	ResetEpoch() error
+	// Wait until this audio track has no active consumers.
+	Unused() error
+	// Wait until this audio track has at least one active consumer.
+	Used() error
 	Write(frame MoqAudioFrame) error
 }
 
@@ -2551,6 +2625,103 @@ func (_self *MoqAudioProducer) Finish() error {
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// Return the name of this audio track.
+func (_self *MoqAudioProducer) Name() (string, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqaudioproducer_name(
+				_pointer, _uniffiStatus),
+		}
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue string
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterStringINSTANCE.Lift(_uniffiRV), nil
+	}
+}
+
+// Re-anchor the timeline to the next frame's timestamp.
+//
+// Call this before writing after an idle gap so the gap remains visible in
+// the audio PTS instead of being compressed out by the running sample count.
+func (_self *MoqAudioProducer) ResetEpoch() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqaudioproducer_reset_epoch(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Wait until this audio track has no active consumers.
+func (_self *MoqAudioProducer) Unused() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		C.uniffi_moq_ffi_fn_method_moqaudioproducer_unused(
+			_pointer),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	if err == nil {
+		return nil
+	}
+
+	return err
+}
+
+// Wait until this audio track has at least one active consumer.
+func (_self *MoqAudioProducer) Used() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		C.uniffi_moq_ffi_fn_method_moqaudioproducer_used(
+			_pointer),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	if err == nil {
+		return nil
+	}
+
+	return err
 }
 
 func (_self *MoqAudioProducer) Write(frame MoqAudioFrame) error {
@@ -2623,7 +2794,7 @@ type MoqBroadcastConsumerInterface interface {
 	// Subscribe to an audio track. `catalog_audio_config` comes from
 	// the catalog (see
 	// [`MoqCatalogConsumer::next`](crate::consumer::MoqCatalogConsumer::next));
-	// the codec is inferred from it. Only Opus is currently supported.
+	// the codec is inferred from it. Only Opus and AAC-LC are supported.
 	SubscribeAudio(name string, catalogAudio MoqAudio, output MoqAudioDecoderOutput) (*MoqAudioConsumer, error)
 	// Fetch one complete group by track name and group sequence.
 	//
@@ -2673,7 +2844,7 @@ type MoqBroadcastConsumer struct {
 // Subscribe to an audio track. `catalog_audio_config` comes from
 // the catalog (see
 // [`MoqCatalogConsumer::next`](crate::consumer::MoqCatalogConsumer::next));
-// the codec is inferred from it. Only Opus is currently supported.
+// the codec is inferred from it. Only Opus and AAC-LC are supported.
 func (_self *MoqBroadcastConsumer) SubscribeAudio(name string, catalogAudio MoqAudio, output MoqAudioDecoderOutput) (*MoqAudioConsumer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastConsumer")
 	defer _self.ffiObject.decrementPointer()
@@ -3248,10 +3419,10 @@ type MoqBroadcastProducerInterface interface {
 	// it.
 	//
 	// The encoder opens here, so an unsupported codec, resolution, or backend
-	// fails now rather than on the first frame. The track is named after the
-	// codec (`.avc3` / `.hev1`) and its catalog rendition is published
-	// immediately, read out of the encoder rather than guessed, so a subscriber
-	// can find the track before a frame is written to it.
+	// fails now rather than on the first frame. [`MoqVideoEncoderOutput::track`]
+	// chooses the track name; `None` derives one from the codec. The catalog
+	// rendition is published immediately so a subscriber can discover the track
+	// before a frame is written to it.
 	PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error)
 }
 type MoqBroadcastProducer struct {
@@ -3540,10 +3711,10 @@ func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoPropert
 // it.
 //
 // The encoder opens here, so an unsupported codec, resolution, or backend
-// fails now rather than on the first frame. The track is named after the
-// codec (`.avc3` / `.hev1`) and its catalog rendition is published
-// immediately, read out of the encoder rather than guessed, so a subscriber
-// can find the track before a frame is written to it.
+// fails now rather than on the first frame. [`MoqVideoEncoderOutput::track`]
+// chooses the track name; `None` derives one from the codec. The catalog
+// rendition is published immediately so a subscriber can discover the track
+// before a frame is written to it.
 func (_self *MoqBroadcastProducer) PublishVideo(input MoqVideoEncoderInput, output MoqVideoEncoderOutput) (*MoqVideoProducer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -3614,6 +3785,7 @@ func (_ FfiDestroyerMoqBroadcastProducer) Destroy(value *MoqBroadcastProducer) {
 	value.Destroy()
 }
 
+// A pending dynamic broadcast request that must be accepted or aborted.
 type MoqBroadcastRequestInterface interface {
 	// Abort the request with an application error code.
 	Abort(errorCode uint16) error
@@ -3622,6 +3794,8 @@ type MoqBroadcastRequestInterface interface {
 	// The requested broadcast path.
 	Path() (string, error)
 }
+
+// A pending dynamic broadcast request that must be accepted or aborted.
 type MoqBroadcastRequest struct {
 	ffiObject FfiObject
 }
@@ -5495,11 +5669,10 @@ type MoqOriginConsumerInterface interface {
 	AnnouncedBroadcast(path string) (*MoqAnnouncedBroadcast, error)
 	// Request a broadcast by path, resolving as soon as it can be served.
 	//
-	// Returns the announced broadcast immediately if one exists; otherwise falls back to a
-	// dynamic handler on the origin (if any) and resolves once it serves the broadcast, or
-	// errors if nothing can serve it. Unlike `announced_broadcast`, this does *not* wait
-	// indefinitely for a future announcement: it resolves or fails based on what is
-	// announced now plus any dynamic fallback. Drop the returned future to cancel.
+	// Returns a broadcast already reachable by exact path immediately, whether announced or not;
+	// otherwise falls back to a dynamic handler on the origin (if any) and resolves once it serves
+	// the broadcast, or errors if nothing can serve it. Unlike `announced_broadcast`, this does
+	// *not* wait indefinitely for a future announcement. Drop the returned future to cancel.
 	//
 	// Calling this straight after connecting therefore races the session's announcements
 	// and can report a live broadcast as unroutable. Await `announced_broadcast` first.
@@ -5546,11 +5719,10 @@ func (_self *MoqOriginConsumer) AnnouncedBroadcast(path string) (*MoqAnnouncedBr
 
 // Request a broadcast by path, resolving as soon as it can be served.
 //
-// Returns the announced broadcast immediately if one exists; otherwise falls back to a
-// dynamic handler on the origin (if any) and resolves once it serves the broadcast, or
-// errors if nothing can serve it. Unlike `announced_broadcast`, this does *not* wait
-// indefinitely for a future announcement: it resolves or fails based on what is
-// announced now plus any dynamic fallback. Drop the returned future to cancel.
+// Returns a broadcast already reachable by exact path immediately, whether announced or not;
+// otherwise falls back to a dynamic handler on the origin (if any) and resolves once it serves
+// the broadcast, or errors if nothing can serve it. Unlike `announced_broadcast`, this does
+// *not* wait indefinitely for a future announcement. Drop the returned future to cancel.
 //
 // Calling this straight after connecting therefore races the session's announcements
 // and can report a live broadcast as unroutable. Await `announced_broadcast` first.
@@ -5642,8 +5814,9 @@ func (_ FfiDestroyerMoqOriginConsumer) Destroy(value *MoqOriginConsumer) {
 	value.Destroy()
 }
 
+// A dynamic origin handler that serves broadcast requests not resolved by an existing route.
 type MoqOriginDynamicInterface interface {
-	// Cancel all current and future `requested_broadcast()` calls.
+	// Stop serving dynamic requests and cancel all current `requested_broadcast()` calls.
 	Cancel()
 	// Wait for the next requested broadcast that is not announced.
 	//
@@ -5651,11 +5824,13 @@ type MoqOriginDynamicInterface interface {
 	// it with an application error code. The requesting consumer stays pending until then.
 	RequestedBroadcast() (*MoqBroadcastRequest, error)
 }
+
+// A dynamic origin handler that serves broadcast requests not resolved by an existing route.
 type MoqOriginDynamic struct {
 	ffiObject FfiObject
 }
 
-// Cancel all current and future `requested_broadcast()` calls.
+// Stop serving dynamic requests and cancel all current `requested_broadcast()` calls.
 func (_self *MoqOriginDynamic) Cancel() {
 	_pointer := _self.ffiObject.incrementPointer("*MoqOriginDynamic")
 	defer _self.ffiObject.decrementPointer()
@@ -7642,6 +7817,8 @@ type MoqVideoProducerInterface interface {
 	Cut() error
 	// Flush any frames the codec is still holding and finalize the track.
 	Finish() error
+	// Return the name of this video track.
+	Name() (string, error)
 	// Retune the live encoder to `bitrate` bits per second, taking effect from
 	// roughly the next frame. No keyframe is forced, so this is cheap enough to
 	// drive from a congestion controller.
@@ -7655,6 +7832,10 @@ type MoqVideoProducerInterface interface {
 	// encoder keeps running at its current rate, so stop adapting rather than
 	// stop publishing.
 	SetBitrate(bitrate uint64) error
+	// Wait until this video track has no active consumers.
+	Unused() error
+	// Wait until this video track has at least one active consumer.
+	Used() error
 	// Encode and publish one raw frame.
 	//
 	// A backend that pipelines publishes an earlier frame's output here, so a
@@ -7706,6 +7887,24 @@ func (_self *MoqVideoProducer) Finish() error {
 	return _uniffiErr.AsError()
 }
 
+// Return the name of this video track.
+func (_self *MoqVideoProducer) Name() (string, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqvideoproducer_name(
+				_pointer, _uniffiStatus),
+		}
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue string
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterStringINSTANCE.Lift(_uniffiRV), nil
+	}
+}
+
 // Retune the live encoder to `bitrate` bits per second, taking effect from
 // roughly the next frame. No keyframe is forced, so this is cheap enough to
 // drive from a congestion controller.
@@ -7727,6 +7926,70 @@ func (_self *MoqVideoProducer) SetBitrate(bitrate uint64) error {
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// Wait until this video track has no active consumers.
+func (_self *MoqVideoProducer) Unused() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_unused(
+			_pointer),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	if err == nil {
+		return nil
+	}
+
+	return err
+}
+
+// Wait until this video track has at least one active consumer.
+func (_self *MoqVideoProducer) Used() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		C.uniffi_moq_ffi_fn_method_moqvideoproducer_used(
+			_pointer),
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	if err == nil {
+		return nil
+	}
+
+	return err
 }
 
 // Encode and publish one raw frame.
@@ -8996,6 +9259,8 @@ func (_ FfiDestroyerMoqVideoEncoderInput) Destroy(value MoqVideoEncoderInput) {
 // Codec-side configuration.
 type MoqVideoEncoderOutput struct {
 	Codec MoqVideoCodec
+	// Track name. `None` derives a unique name from the codec.
+	Track *string
 	// Target bitrate in bits per second. `None` derives one from the resolution
 	// and framerate.
 	Bitrate *uint64
@@ -9009,6 +9274,7 @@ type MoqVideoEncoderOutput struct {
 
 func (r *MoqVideoEncoderOutput) Destroy() {
 	FfiDestroyerMoqVideoCodec{}.Destroy(r.Codec)
+	FfiDestroyerOptionalString{}.Destroy(r.Track)
 	FfiDestroyerOptionalUint64{}.Destroy(r.Bitrate)
 	FfiDestroyerOptionalUint32{}.Destroy(r.Gop)
 	FfiDestroyerMoqVideoEncoderKind{}.Destroy(r.Kind)
@@ -9025,6 +9291,7 @@ func (c FfiConverterMoqVideoEncoderOutput) Lift(rb RustBufferI) MoqVideoEncoderO
 func (c FfiConverterMoqVideoEncoderOutput) Read(reader io.Reader) MoqVideoEncoderOutput {
 	return MoqVideoEncoderOutput{
 		FfiConverterMoqVideoCodecINSTANCE.Read(reader),
+		FfiConverterOptionalStringINSTANCE.Read(reader),
 		FfiConverterOptionalUint64INSTANCE.Read(reader),
 		FfiConverterOptionalUint32INSTANCE.Read(reader),
 		FfiConverterMoqVideoEncoderKindINSTANCE.Read(reader),
@@ -9041,6 +9308,7 @@ func (c FfiConverterMoqVideoEncoderOutput) LowerExternal(value MoqVideoEncoderOu
 
 func (c FfiConverterMoqVideoEncoderOutput) Write(writer io.Writer, value MoqVideoEncoderOutput) {
 	FfiConverterMoqVideoCodecINSTANCE.Write(writer, value.Codec)
+	FfiConverterOptionalStringINSTANCE.Write(writer, value.Track)
 	FfiConverterOptionalUint64INSTANCE.Write(writer, value.Bitrate)
 	FfiConverterOptionalUint32INSTANCE.Write(writer, value.Gop)
 	FfiConverterMoqVideoEncoderKindINSTANCE.Write(writer, value.Kind)
