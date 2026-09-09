@@ -10397,22 +10397,21 @@ func (_ FfiDestroyerMoqVideoCodec) Destroy(value MoqVideoCodec) {
 
 // Which encoder implementation to use.
 //
-// These bindings compile VideoToolbox (macOS), Media Foundation (Windows), and
-// openh264 (software, everywhere). NVENC/NVDEC are a libmoq-only build option
-// and VAAPI is opt-in everywhere, so Linux here is software-only.
+// These bindings compile VideoToolbox (macOS), Media Foundation (Windows),
+// openh264 (software, everywhere), and on Linux NVENC and VAAPI, which dlopen
+// their driver at runtime and drop out of `Auto` when it is absent.
 type MoqVideoEncoderKind interface {
 	Destroy()
 }
 
-// Prefer a platform hardware encoder, falling back to software. On Linux
-// that fallback is the only option these bindings have.
+// Prefer a platform hardware encoder, falling back to software.
 type MoqVideoEncoderKindAuto struct {
 }
 
 func (e MoqVideoEncoderKindAuto) Destroy() {
 }
 
-// Hardware only; fails if none is available, which on Linux is always.
+// Hardware only; fails if none is available.
 type MoqVideoEncoderKindHardware struct {
 }
 
@@ -10427,7 +10426,8 @@ func (e MoqVideoEncoderKindSoftware) Destroy() {
 }
 
 // A specific backend that moq-ffi compiles: `"videotoolbox"` (macOS),
-// `"mediafoundation"` (Windows), or `"openh264"` (software, everywhere).
+// `"mediafoundation"` (Windows), `"nvenc"` / `"vaapi"` (Linux), or
+// `"openh264"` (software, everywhere).
 // Naming one this build lacks fails with a no-encoder error, so reach for
 // this only when [`Auto`](Self::Auto) picks the wrong one.
 type MoqVideoEncoderKindNamed struct {
