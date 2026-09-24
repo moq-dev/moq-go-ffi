@@ -416,6 +416,11 @@ uint64_t uniffi_moq_ffi_fn_clone_moqaudioproducer(uint64_t handle, RustCallStatu
 void uniffi_moq_ffi_fn_free_moqaudioproducer(uint64_t handle, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQAUDIOPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQAUDIOPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqaudioproducer_demand(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQAUDIOPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQAUDIOPRODUCER_FINISH
 void uniffi_moq_ffi_fn_method_moqaudioproducer_finish(uint64_t ptr, RustCallStatus *out_status
@@ -681,6 +686,36 @@ uint64_t uniffi_moq_ffi_fn_method_moqtrackconsumer_recv_group(uint64_t ptr
 void uniffi_moq_ffi_fn_method_moqtrackconsumer_update(uint64_t ptr, RustBuffer subscription, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQTRACKDEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQTRACKDEMAND
+uint64_t uniffi_moq_ffi_fn_clone_moqtrackdemand(uint64_t handle, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQTRACKDEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQTRACKDEMAND
+void uniffi_moq_ffi_fn_free_moqtrackdemand(uint64_t handle, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_IS_USED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_IS_USED
+int8_t uniffi_moq_ffi_fn_method_moqtrackdemand_is_used(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_NAME
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_NAME
+RustBuffer uniffi_moq_ffi_fn_method_moqtrackdemand_name(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_UNUSED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_UNUSED
+uint64_t uniffi_moq_ffi_fn_method_moqtrackdemand_unused(uint64_t ptr
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_USED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKDEMAND_USED
+uint64_t uniffi_moq_ffi_fn_method_moqtrackdemand_used(uint64_t ptr
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQJSONSNAPSHOTCONSUMER
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQJSONSNAPSHOTCONSUMER
 uint64_t uniffi_moq_ffi_fn_clone_moqjsonsnapshotconsumer(uint64_t handle, RustCallStatus *out_status
@@ -709,6 +744,11 @@ uint64_t uniffi_moq_ffi_fn_clone_moqjsonsnapshotproducer(uint64_t handle, RustCa
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQJSONSNAPSHOTPRODUCER
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FREE_MOQJSONSNAPSHOTPRODUCER
 void uniffi_moq_ffi_fn_free_moqjsonsnapshotproducer(uint64_t handle, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSNAPSHOTPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSNAPSHOTPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqjsonsnapshotproducer_demand(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSNAPSHOTPRODUCER_FINISH
@@ -754,6 +794,11 @@ void uniffi_moq_ffi_fn_free_moqjsonstreamproducer(uint64_t handle, RustCallStatu
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSTREAMPRODUCER_APPEND
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSTREAMPRODUCER_APPEND
 void uniffi_moq_ffi_fn_method_moqjsonstreamproducer_append(uint64_t ptr, RustBuffer value, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSTREAMPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSTREAMPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqjsonstreamproducer_demand(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQJSONSTREAMPRODUCER_FINISH
@@ -1202,6 +1247,11 @@ void uniffi_moq_ffi_fn_free_moqmediaproducer(uint64_t handle, RustCallStatus *ou
 void uniffi_moq_ffi_fn_method_moqmediaproducer_cut(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqmediaproducer_demand(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_FINISH
 void uniffi_moq_ffi_fn_method_moqmediaproducer_finish(uint64_t ptr, RustCallStatus *out_status
@@ -1305,6 +1355,11 @@ uint64_t uniffi_moq_ffi_fn_method_moqtrackproducer_consume(uint64_t ptr, RustBuf
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKPRODUCER_CREATE_GROUP
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKPRODUCER_CREATE_GROUP
 uint64_t uniffi_moq_ffi_fn_method_moqtrackproducer_create_group(uint64_t ptr, uint64_t sequence, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqtrackproducer_demand(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQTRACKPRODUCER_DYNAMIC
@@ -1669,6 +1724,11 @@ void uniffi_moq_ffi_fn_free_moqvideoproducer(uint64_t handle, RustCallStatus *ou
 void uniffi_moq_ffi_fn_method_moqvideoproducer_cut(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_DEMAND
+uint64_t uniffi_moq_ffi_fn_method_moqvideoproducer_demand(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_FINISH
 void uniffi_moq_ffi_fn_method_moqvideoproducer_finish(uint64_t ptr, RustCallStatus *out_status
@@ -1987,6 +2047,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqaudioconsumer_next(void
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQAUDIOPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQAUDIOPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqaudioproducer_demand(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQAUDIOPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQAUDIOPRODUCER_FINISH
 uint16_t uniffi_moq_ffi_checksum_method_moqaudioproducer_finish(void
@@ -2209,6 +2275,30 @@ uint16_t uniffi_moq_ffi_checksum_method_moqtrackconsumer_update(void
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_IS_USED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_IS_USED
+uint16_t uniffi_moq_ffi_checksum_method_moqtrackdemand_is_used(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_NAME
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_NAME
+uint16_t uniffi_moq_ffi_checksum_method_moqtrackdemand_name(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_UNUSED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_UNUSED
+uint16_t uniffi_moq_ffi_checksum_method_moqtrackdemand_unused(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_USED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKDEMAND_USED
+uint16_t uniffi_moq_ffi_checksum_method_moqtrackdemand_used(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTCONSUMER_CANCEL
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTCONSUMER_CANCEL
 uint16_t uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_cancel(void
@@ -2218,6 +2308,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_cancel(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTCONSUMER_NEXT
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTCONSUMER_NEXT
 uint16_t uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_next(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSNAPSHOTPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_demand(void
     
 );
 #endif
@@ -2248,6 +2344,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqjsonstreamconsumer_next(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSTREAMPRODUCER_APPEND
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSTREAMPRODUCER_APPEND
 uint16_t uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_append(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSTREAMPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQJSONSTREAMPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_demand(void
     
 );
 #endif
@@ -2605,6 +2707,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_cut(void
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_demand(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FINISH
 uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_finish(void
@@ -2692,6 +2800,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqtrackproducer_consume(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKPRODUCER_CREATE_GROUP
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKPRODUCER_CREATE_GROUP
 uint16_t uniffi_moq_ffi_checksum_method_moqtrackproducer_create_group(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQTRACKPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqtrackproducer_demand(void
     
 );
 #endif
@@ -3028,6 +3142,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqvideoconsumer_next(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_CUT
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_CUT
 uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_cut(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_DEMAND
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_DEMAND
+uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_demand(void
     
 );
 #endif

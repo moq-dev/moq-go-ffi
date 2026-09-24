@@ -401,6 +401,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_demand()
+		})
+		if checksum != 42822 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_demand: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_finish()
 		})
 		if checksum != 6287 {
@@ -439,7 +448,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_unused()
 		})
-		if checksum != 26060 {
+		if checksum != 19225 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -448,7 +457,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqaudioproducer_used()
 		})
-		if checksum != 36634 {
+		if checksum != 63466 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqaudioproducer_used: UniFFI API checksum mismatch")
 		}
@@ -734,6 +743,42 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqtrackdemand_is_used()
+		})
+		if checksum != 62559 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdemand_is_used: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqtrackdemand_name()
+		})
+		if checksum != 14603 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdemand_name: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqtrackdemand_unused()
+		})
+		if checksum != 32953 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdemand_unused: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqtrackdemand_used()
+		})
+		if checksum != 18944 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackdemand_used: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_cancel()
 		})
 		if checksum != 45114 {
@@ -748,6 +793,15 @@ func uniffiCheckChecksums() {
 		if checksum != 64727 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotconsumer_next: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_demand()
+		})
+		if checksum != 45789 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonsnapshotproducer_demand: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -793,6 +847,15 @@ func uniffiCheckChecksums() {
 		if checksum != 12571 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_append: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_demand()
+		})
+		if checksum != 52854 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqjsonstreamproducer_demand: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -1328,6 +1391,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_demand()
+		})
+		if checksum != 44491 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_demand: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_finish()
 		})
 		if checksum != 38480 {
@@ -1357,7 +1429,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_unused()
 		})
-		if checksum != 35935 {
+		if checksum != 38139 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -1366,7 +1438,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_used()
 		})
-		if checksum != 53654 {
+		if checksum != 55925 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_used: UniFFI API checksum mismatch")
 		}
@@ -1463,6 +1535,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_demand()
+		})
+		if checksum != 32311 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_demand: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_dynamic()
 		})
 		if checksum != 58584 {
@@ -1501,7 +1582,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_unused()
 		})
-		if checksum != 9025 {
+		if checksum != 29609 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -1510,7 +1591,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackproducer_used()
 		})
-		if checksum != 36898 {
+		if checksum != 19906 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackproducer_used: UniFFI API checksum mismatch")
 		}
@@ -1967,6 +2048,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_demand()
+		})
+		if checksum != 283 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_demand: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_finish()
 		})
 		if checksum != 59081 {
@@ -2005,7 +2095,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_unused()
 		})
-		if checksum != 30941 {
+		if checksum != 49939 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_unused: UniFFI API checksum mismatch")
 		}
@@ -2014,7 +2104,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqvideoproducer_used()
 		})
-		if checksum != 48040 {
+		if checksum != 24872 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqvideoproducer_used: UniFFI API checksum mismatch")
 		}
@@ -2983,6 +3073,8 @@ func (_ FfiDestroyerMoqAudioConsumer) Destroy(value *MoqAudioConsumer) {
 // is PCM in the format declared by the [`MoqAudioEncoderInput`]
 // passed at publish time.
 type MoqAudioProducerInterface interface {
+	// A watch-only handle to whether this audio track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	Finish() error
 	// Return the name of this audio track.
 	Name() (string, error)
@@ -2996,9 +3088,13 @@ type MoqAudioProducerInterface interface {
 	// the audio PTS instead of being compressed out by the running sample count.
 	ResetEpoch() error
 	// Wait until this audio track has no active consumers.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Unused(
 		ctx context.Context) error
 	// Wait until this audio track has at least one active consumer.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Used(
 		ctx context.Context) error
 	Write(frame MoqAudioFrame) error
@@ -3012,6 +3108,22 @@ type MoqAudioProducerInterface interface {
 // passed at publish time.
 type MoqAudioProducer struct {
 	ffiObject FfiObject
+}
+
+// A watch-only handle to whether this audio track has subscribers.
+func (_self *MoqAudioProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqaudioproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 
 func (_self *MoqAudioProducer) Finish() error {
@@ -3073,6 +3185,8 @@ func (_self *MoqAudioProducer) ResetEpoch() error {
 }
 
 // Wait until this audio track has no active consumers.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqAudioProducer) Unused(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
@@ -3110,6 +3224,8 @@ func (_self *MoqAudioProducer) Unused(
 }
 
 // Wait until this audio track has at least one active consumer.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqAudioProducer) Used(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqAudioProducer")
@@ -5961,6 +6077,8 @@ func (_ FfiDestroyerMoqJsonSnapshotConsumer) Destroy(value *MoqJsonSnapshotConsu
 
 // Publishes a JSON value that consumers see as a single latest state.
 type MoqJsonSnapshotProducerInterface interface {
+	// A watch-only handle to whether this track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	// Finish the track, closing any open group.
 	Finish() error
 	// Publish a new value, encoded as a snapshot or delta automatically. `value` is a JSON
@@ -5971,6 +6089,22 @@ type MoqJsonSnapshotProducerInterface interface {
 // Publishes a JSON value that consumers see as a single latest state.
 type MoqJsonSnapshotProducer struct {
 	ffiObject FfiObject
+}
+
+// A watch-only handle to whether this track has subscribers.
+func (_self *MoqJsonSnapshotProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqJsonSnapshotProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqjsonsnapshotproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 
 // Finish the track, closing any open group.
@@ -6182,6 +6316,8 @@ func (_ FfiDestroyerMoqJsonStreamConsumer) Destroy(value *MoqJsonStreamConsumer)
 type MoqJsonStreamProducerInterface interface {
 	// Append one record to the log. `value` is a JSON document.
 	Append(value string) error
+	// A watch-only handle to whether this track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	// Finish the track, closing the group.
 	Finish() error
 }
@@ -6201,6 +6337,22 @@ func (_self *MoqJsonStreamProducer) Append(value string) error {
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// A watch-only handle to whether this track has subscribers.
+func (_self *MoqJsonStreamProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqJsonStreamProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqjsonstreamproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 
 // Finish the track, closing the group.
@@ -6539,6 +6691,8 @@ type MoqMediaProducerInterface interface {
 	// the relay forwards without waiting, or at a segment cadence to align with video for
 	// HLS/DASH. Video groups at its own keyframes and needs this only to override that.
 	Cut() error
+	// A watch-only handle to whether this track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	// Finish this track and finalize encoding.
 	Finish() error
 	// The name of the track this publishes.
@@ -6549,9 +6703,13 @@ type MoqMediaProducerInterface interface {
 	// be deterministic: two encoders aligning per GOP so a consumer can fail over between them.
 	Seek(sequence uint64) error
 	// Wait until this track has no active consumers.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Unused(
 		ctx context.Context) error
 	// Wait until this track has at least one active consumer.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Used(
 		ctx context.Context) error
 	// Write `frame` to this track.
@@ -6579,6 +6737,22 @@ func (_self *MoqMediaProducer) Cut() error {
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// A watch-only handle to whether this track has subscribers.
+func (_self *MoqMediaProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqmediaproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 
 // Finish this track and finalize encoding.
@@ -6627,6 +6801,8 @@ func (_self *MoqMediaProducer) Seek(sequence uint64) error {
 }
 
 // Wait until this track has no active consumers.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqMediaProducer) Unused(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
@@ -6664,6 +6840,8 @@ func (_self *MoqMediaProducer) Unused(
 }
 
 // Wait until this track has at least one active consumer.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqMediaProducer) Used(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
@@ -8731,6 +8909,184 @@ func (_ FfiDestroyerMoqTrackConsumer) Destroy(value *MoqTrackConsumer) {
 	value.Destroy()
 }
 
+// A watch-only handle to a published track's subscriber demand.
+//
+// Weak: holding it neither keeps the track open nor locks the producer it came from, so a wait
+// can park here while the producer keeps publishing. Waits fail with `Closed` once the track is
+// released.
+type MoqTrackDemandInterface interface {
+	// Whether the track has at least one active consumer right now, without waiting.
+	IsUsed() bool
+	// The name of the track this watches.
+	Name() string
+	// Wait until the track has no active consumers.
+	Unused(
+		ctx context.Context) error
+	// Wait until the track has at least one active consumer.
+	Used(
+		ctx context.Context) error
+}
+
+// A watch-only handle to a published track's subscriber demand.
+//
+// Weak: holding it neither keeps the track open nor locks the producer it came from, so a wait
+// can park here while the producer keeps publishing. Waits fail with `Closed` once the track is
+// released.
+type MoqTrackDemand struct {
+	ffiObject FfiObject
+}
+
+// Whether the track has at least one active consumer right now, without waiting.
+func (_self *MoqTrackDemand) IsUsed() bool {
+	_pointer := _self.ffiObject.incrementPointer("*MoqTrackDemand")
+	defer _self.ffiObject.decrementPointer()
+	return FfiConverterBoolINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) C.int8_t {
+		return C.uniffi_moq_ffi_fn_method_moqtrackdemand_is_used(
+			_pointer, _uniffiStatus)
+	}))
+}
+
+// The name of the track this watches.
+func (_self *MoqTrackDemand) Name() string {
+	_pointer := _self.ffiObject.incrementPointer("*MoqTrackDemand")
+	defer _self.ffiObject.decrementPointer()
+	return FfiConverterStringINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqtrackdemand_name(
+				_pointer, _uniffiStatus),
+		}
+	}))
+}
+
+// Wait until the track has no active consumers.
+func (_self *MoqTrackDemand) Unused(
+	ctx context.Context) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqTrackDemand")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		ctx,
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		// rustFutureFunc
+		func() C.uint64_t {
+			return C.uniffi_moq_ffi_fn_method_moqtrackdemand_unused(
+				_pointer)
+		},
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// cancelFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_cancel_void(handle)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	return err
+}
+
+// Wait until the track has at least one active consumer.
+func (_self *MoqTrackDemand) Used(
+	ctx context.Context) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqTrackDemand")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		ctx,
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		// rustFutureFunc
+		func() C.uint64_t {
+			return C.uniffi_moq_ffi_fn_method_moqtrackdemand_used(
+				_pointer)
+		},
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// cancelFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_cancel_void(handle)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	return err
+}
+func (object *MoqTrackDemand) Destroy() {
+	runtime.SetFinalizer(object, nil)
+	object.ffiObject.destroy()
+}
+
+type FfiConverterMoqTrackDemand struct{}
+
+var FfiConverterMoqTrackDemandINSTANCE = FfiConverterMoqTrackDemand{}
+
+func (c FfiConverterMoqTrackDemand) Lift(handle C.uint64_t) *MoqTrackDemand {
+	result := &MoqTrackDemand{
+		newFfiObject(
+			handle,
+			func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+				return C.uniffi_moq_ffi_fn_clone_moqtrackdemand(handle, status)
+			},
+			func(handle C.uint64_t, status *C.RustCallStatus) {
+				C.uniffi_moq_ffi_fn_free_moqtrackdemand(handle, status)
+			},
+		),
+	}
+	runtime.SetFinalizer(result, (*MoqTrackDemand).Destroy)
+	return result
+}
+
+func (c FfiConverterMoqTrackDemand) Read(reader io.Reader) *MoqTrackDemand {
+	return c.Lift(C.uint64_t(readUint64(reader)))
+}
+
+func (c FfiConverterMoqTrackDemand) Lower(value *MoqTrackDemand) C.uint64_t {
+	// TODO: this is bad - all synchronization from ObjectRuntime.go is discarded here,
+	// because the handle will be decremented immediately after this function returns,
+	// and someone will be left holding onto a non-locked handle.
+	handle := value.ffiObject.incrementPointer("*MoqTrackDemand")
+	defer value.ffiObject.decrementPointer()
+	return handle
+}
+
+func (c FfiConverterMoqTrackDemand) Write(writer io.Writer, value *MoqTrackDemand) {
+	writeUint64(writer, uint64(c.Lower(value)))
+}
+
+func LiftFromExternalMoqTrackDemand(handle uint64) *MoqTrackDemand {
+	return FfiConverterMoqTrackDemandINSTANCE.Lift(C.uint64_t(handle))
+}
+
+func LowerToExternalMoqTrackDemand(value *MoqTrackDemand) uint64 {
+	return uint64(FfiConverterMoqTrackDemandINSTANCE.Lower(value))
+}
+
+type FfiDestroyerMoqTrackDemand struct{}
+
+func (_ FfiDestroyerMoqTrackDemand) Destroy(value *MoqTrackDemand) {
+	value.Destroy()
+}
+
 // Serves on-demand fetches of uncached groups for one track.
 type MoqTrackDynamicInterface interface {
 	// Cancel all current and future `requested_group()` calls.
@@ -8882,6 +9238,8 @@ type MoqTrackProducerInterface interface {
 	// Use this for sparse or replayed tracks. [`append_group`](Self::append_group)
 	// remains the convenient live-stream path.
 	CreateGroup(sequence uint64) (*MoqGroupProducer, error)
+	// A watch-only handle to whether this track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	// Create a handler for uncached group fetches on this track.
 	//
 	// Hold the returned object for as long as cache misses should wait to be
@@ -8901,9 +9259,13 @@ type MoqTrackProducerInterface interface {
 	// Return the name of this track.
 	Name() (string, error)
 	// Wait until this track has no active consumers.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Unused(
 		ctx context.Context) error
 	// Wait until this track has at least one active consumer.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Used(
 		ctx context.Context) error
 	// Write `frame` as a single-frame group.
@@ -9001,6 +9363,22 @@ func (_self *MoqTrackProducer) CreateGroup(sequence uint64) (*MoqGroupProducer, 
 	}
 }
 
+// A watch-only handle to whether this track has subscribers.
+func (_self *MoqTrackProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqTrackProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqtrackproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
+}
+
 // Create a handler for uncached group fetches on this track.
 //
 // Hold the returned object for as long as cache misses should wait to be
@@ -9070,6 +9448,8 @@ func (_self *MoqTrackProducer) Name() (string, error) {
 }
 
 // Wait until this track has no active consumers.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqTrackProducer) Unused(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqTrackProducer")
@@ -9107,6 +9487,8 @@ func (_self *MoqTrackProducer) Unused(
 }
 
 // Wait until this track has at least one active consumer.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqTrackProducer) Used(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqTrackProducer")
@@ -9517,6 +9899,8 @@ type MoqVideoProducerInterface interface {
 	// without the control): nothing is queued, and groups keep falling at the
 	// configured interval.
 	Cut() error
+	// A watch-only handle to whether this video track has subscribers.
+	Demand() (*MoqTrackDemand, error)
 	// Flush any frames the codec is still holding and finalize the track.
 	Finish() error
 	// Return the name of this video track.
@@ -9543,9 +9927,13 @@ type MoqVideoProducerInterface interface {
 	// stop publishing.
 	SetBitrate(bitrate uint64) error
 	// Wait until this video track has no active consumers.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Unused(
 		ctx context.Context) error
 	// Wait until this video track has at least one active consumer.
+	//
+	// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 	Used(
 		ctx context.Context) error
 	// Encode and publish one raw frame.
@@ -9589,6 +9977,22 @@ func (_self *MoqVideoProducer) Cut() error {
 		return false
 	})
 	return _uniffiErr.AsError()
+}
+
+// A watch-only handle to whether this video track has subscribers.
+func (_self *MoqVideoProducer) Demand() (*MoqTrackDemand, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqvideoproducer_demand(
+			_pointer, _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqTrackDemand
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
+	}
 }
 
 // Flush any frames the codec is still holding and finalize the track.
@@ -9663,6 +10067,8 @@ func (_self *MoqVideoProducer) SetBitrate(bitrate uint64) error {
 }
 
 // Wait until this video track has no active consumers.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqVideoProducer) Unused(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")
@@ -9700,6 +10106,8 @@ func (_self *MoqVideoProducer) Unused(
 }
 
 // Wait until this video track has at least one active consumer.
+//
+// Prefer [`demand`](Self::demand), a handle that can wait without borrowing this producer.
 func (_self *MoqVideoProducer) Used(
 	ctx context.Context) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqVideoProducer")

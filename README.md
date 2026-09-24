@@ -7,7 +7,7 @@ Source, issues, and pull requests live in [moq-dev/moq](https://github.com/moq-d
 ## Install
 
 ```bash
-go get moq.dev/moq-ffi@v0.4.0
+go get moq.dev/moq-ffi@v0.4.1
 ```
 
 The module bundles prebuilt native libraries for `linux/amd64`, `linux/arm64`, `darwin/arm64` (`libmoq_ffi.a`), and `windows/amd64` (`moq_ffi.lib`); cgo selects the right one automatically.
