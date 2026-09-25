@@ -1132,7 +1132,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_audio()
 		})
-		if checksum != 47444 {
+		if checksum != 31691 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_audio: UniFFI API checksum mismatch")
 		}
@@ -1405,6 +1405,15 @@ func uniffiCheckChecksums() {
 		if checksum != 38480 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_finish: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_flush()
+		})
+		if checksum != 10235 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_flush: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -4186,8 +4195,9 @@ type MoqBroadcastProducerInterface interface {
 	Finish() error
 	// Publish one audio codec as a new track.
 	//
-	// The track is named after the format (`0.opus`), so the catalog is how a subscriber finds it.
-	// [`MoqAudioInit::data`] is required: audio resolves its rendition entirely from those bytes.
+	// The track is [`MoqAudioInit::track`], or else named after the format (`0.opus`), so the
+	// catalog is how a subscriber finds it. [`MoqAudioInit::data`] is required: audio resolves its
+	// rendition entirely from those bytes.
 	PublishAudio(init MoqAudioInit) (*MoqMediaProducer, error)
 	// Publish one audio codec onto a track requested through
 	// [`MoqBroadcastDynamic::requested_track`], which the importer accepts.
@@ -4401,8 +4411,9 @@ func (_self *MoqBroadcastProducer) Finish() error {
 
 // Publish one audio codec as a new track.
 //
-// The track is named after the format (`0.opus`), so the catalog is how a subscriber finds it.
-// [`MoqAudioInit::data`] is required: audio resolves its rendition entirely from those bytes.
+// The track is [`MoqAudioInit::track`], or else named after the format (`0.opus`), so the
+// catalog is how a subscriber finds it. [`MoqAudioInit::data`] is required: audio resolves its
+// rendition entirely from those bytes.
 func (_self *MoqBroadcastProducer) PublishAudio(init MoqAudioInit) (*MoqMediaProducer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -6757,6 +6768,11 @@ type MoqMediaProducerInterface interface {
 	Demand() (*MoqTrackDemand, error)
 	// Finish this track and finalize encoding.
 	Finish() error
+	// Record a locally encoded frame's handoff for catalog jitter measurement.
+	//
+	// `timestamp_us` is on the broadcast media clock. Call this after `write_frame` only for
+	// encoder output; imported files, pipes, and network media stay clock-free.
+	Flush(timestampUs uint64) error
 	// The name of the track this publishes.
 	Name() (string, error)
 	// Draw a group boundary and number the next group `sequence`.
@@ -6824,6 +6840,21 @@ func (_self *MoqMediaProducer) Finish() error {
 	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
 		C.uniffi_moq_ffi_fn_method_moqmediaproducer_finish(
 			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Record a locally encoded frame's handoff for catalog jitter measurement.
+//
+// `timestamp_us` is on the broadcast media clock. Call this after `write_frame` only for
+// encoder output; imported files, pipes, and network media stay clock-free.
+func (_self *MoqMediaProducer) Flush(timestampUs uint64) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqmediaproducer_flush(
+			_pointer, FfiConverterUint64INSTANCE.Lower(timestampUs), _uniffiStatus)
 		return false
 	})
 	return _uniffiErr.AsError()
@@ -10637,12 +10668,16 @@ type MoqAudioInit struct {
 	Data []byte
 	// Human-readable rendition name for a track picker.
 	Label *string
+	// Track name. `None` derives a unique name from the format. Refused on a requested track,
+	// which already carries its name.
+	Track *string
 }
 
 func (r *MoqAudioInit) Destroy() {
 	FfiDestroyerMoqAudioFormat{}.Destroy(r.Format)
 	FfiDestroyerBytes{}.Destroy(r.Data)
 	FfiDestroyerOptionalString{}.Destroy(r.Label)
+	FfiDestroyerOptionalString{}.Destroy(r.Track)
 }
 
 type FfiConverterMoqAudioInit struct{}
@@ -10657,6 +10692,7 @@ func (c FfiConverterMoqAudioInit) Read(reader io.Reader) MoqAudioInit {
 	return MoqAudioInit{
 		FfiConverterMoqAudioFormatINSTANCE.Read(reader),
 		FfiConverterBytesINSTANCE.Read(reader),
+		FfiConverterOptionalStringINSTANCE.Read(reader),
 		FfiConverterOptionalStringINSTANCE.Read(reader),
 	}
 }
@@ -10673,6 +10709,7 @@ func (c FfiConverterMoqAudioInit) Write(writer io.Writer, value MoqAudioInit) {
 	FfiConverterMoqAudioFormatINSTANCE.Write(writer, value.Format)
 	FfiConverterBytesINSTANCE.Write(writer, value.Data)
 	FfiConverterOptionalStringINSTANCE.Write(writer, value.Label)
+	FfiConverterOptionalStringINSTANCE.Write(writer, value.Track)
 }
 
 type FfiDestroyerMoqAudioInit struct{}
@@ -12052,6 +12089,9 @@ type MoqVideoInit struct {
 	Label *string
 	// Catalog fields the stream cannot reveal itself.
 	Hint *MoqVideoHint
+	// Track name. `None` derives a unique name from the format. Refused on a requested track,
+	// which already carries its name.
+	Track *string
 }
 
 func (r *MoqVideoInit) Destroy() {
@@ -12059,6 +12099,7 @@ func (r *MoqVideoInit) Destroy() {
 	FfiDestroyerBytes{}.Destroy(r.Data)
 	FfiDestroyerOptionalString{}.Destroy(r.Label)
 	FfiDestroyerOptionalMoqVideoHint{}.Destroy(r.Hint)
+	FfiDestroyerOptionalString{}.Destroy(r.Track)
 }
 
 type FfiConverterMoqVideoInit struct{}
@@ -12075,6 +12116,7 @@ func (c FfiConverterMoqVideoInit) Read(reader io.Reader) MoqVideoInit {
 		FfiConverterBytesINSTANCE.Read(reader),
 		FfiConverterOptionalStringINSTANCE.Read(reader),
 		FfiConverterOptionalMoqVideoHintINSTANCE.Read(reader),
+		FfiConverterOptionalStringINSTANCE.Read(reader),
 	}
 }
 
@@ -12091,6 +12133,7 @@ func (c FfiConverterMoqVideoInit) Write(writer io.Writer, value MoqVideoInit) {
 	FfiConverterBytesINSTANCE.Write(writer, value.Data)
 	FfiConverterOptionalStringINSTANCE.Write(writer, value.Label)
 	FfiConverterOptionalMoqVideoHintINSTANCE.Write(writer, value.Hint)
+	FfiConverterOptionalStringINSTANCE.Write(writer, value.Track)
 }
 
 type FfiDestroyerMoqVideoInit struct{}

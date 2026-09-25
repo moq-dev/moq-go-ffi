@@ -1257,6 +1257,11 @@ uint64_t uniffi_moq_ffi_fn_method_moqmediaproducer_demand(uint64_t ptr, RustCall
 void uniffi_moq_ffi_fn_method_moqmediaproducer_finish(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_FLUSH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_FLUSH
+void uniffi_moq_ffi_fn_method_moqmediaproducer_flush(uint64_t ptr, uint64_t timestamp_us, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_NAME
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_NAME
 RustBuffer uniffi_moq_ffi_fn_method_moqmediaproducer_name(uint64_t ptr, RustCallStatus *out_status
@@ -2726,6 +2731,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_demand(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FINISH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FINISH
 uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_finish(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FLUSH
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_FLUSH
+uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_flush(void
     
 );
 #endif
