@@ -979,7 +979,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast()
 		})
-		if checksum != 16445 {
+		if checksum != 8509 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_announced_broadcast: UniFFI API checksum mismatch")
 		}
@@ -988,7 +988,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast()
 		})
-		if checksum != 18586 {
+		if checksum != 64026 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginconsumer_request_broadcast: UniFFI API checksum mismatch")
 		}
@@ -1006,7 +1006,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqorigindynamic_requested_broadcast()
 		})
-		if checksum != 53391 {
+		if checksum != 54021 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqorigindynamic_requested_broadcast: UniFFI API checksum mismatch")
 		}
@@ -1033,7 +1033,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqoriginproducer_create_broadcast()
 		})
-		if checksum != 47748 {
+		if checksum != 48971 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqoriginproducer_create_broadcast: UniFFI API checksum mismatch")
 		}
@@ -1096,7 +1096,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_announce()
 		})
-		if checksum != 14026 {
+		if checksum != 13700 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_announce: UniFFI API checksum mismatch")
 		}
@@ -1231,7 +1231,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_unannounce()
 		})
-		if checksum != 39609 {
+		if checksum != 63513 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_unannounce: UniFFI API checksum mismatch")
 		}
@@ -1936,6 +1936,24 @@ func uniffiCheckChecksums() {
 		if checksum != 64525 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_tls_verify: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqclient_set_websocket_delay()
+		})
+		if checksum != 53033 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_websocket_delay: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqclient_set_websocket_enabled()
+		})
+		if checksum != 65261 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqclient_set_websocket_enabled: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -4152,9 +4170,9 @@ type MoqBroadcastProducerInterface interface {
 	PublishJsonStream(name string, config MoqJsonStreamConfig) (*MoqJsonStreamProducer, error)
 	// Advertise this broadcast's exact path as a route.
 	//
-	// Announcing again re-prices the route in place. The path is already
-	// discoverable on this origin's local cursor; announce advertises it to peers. Errors with `Closed` on a standalone
-	// broadcast (no origin to announce on).
+	// Until announced, the broadcast is invisible and unroutable for local
+	// consumers and peers alike. Announcing again re-prices the route in place.
+	// Errors with `Closed` on a standalone broadcast (no origin to announce on).
 	Announce(route MoqRoute) error
 	// Create a consumer that reads from this broadcast's tracks.
 	Consume() (*MoqBroadcastConsumer, error)
@@ -4219,8 +4237,9 @@ type MoqBroadcastProducerInterface interface {
 	SetVideoProperties(properties MoqVideoProperties) error
 	// Retract this broadcast's exact-path advertisement, if any.
 	//
-	// The broadcast stays discoverable and reachable locally. Errors with `Closed` on a
-	// standalone broadcast (no origin to announce on).
+	// Local consumers and peers alike stop discovering and requesting it;
+	// tracks already in flight carry on. Announcing again brings it back. Errors
+	// with `Closed` on a standalone broadcast (no origin to announce on).
 	Unannounce() error
 	// Open a video track on this broadcast, encoding the raw frames written to
 	// it.
@@ -4318,9 +4337,9 @@ func (_self *MoqBroadcastProducer) PublishJsonStream(name string, config MoqJson
 
 // Advertise this broadcast's exact path as a route.
 //
-// Announcing again re-prices the route in place. The path is already
-// discoverable on this origin's local cursor; announce advertises it to peers. Errors with `Closed` on a standalone
-// broadcast (no origin to announce on).
+// Until announced, the broadcast is invisible and unroutable for local
+// consumers and peers alike. Announcing again re-prices the route in place.
+// Errors with `Closed` on a standalone broadcast (no origin to announce on).
 func (_self *MoqBroadcastProducer) Announce(route MoqRoute) error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -4575,8 +4594,9 @@ func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoPropert
 
 // Retract this broadcast's exact-path advertisement, if any.
 //
-// The broadcast stays discoverable and reachable locally. Errors with `Closed` on a
-// standalone broadcast (no origin to announce on).
+// Local consumers and peers alike stop discovering and requesting it;
+// tracks already in flight carry on. Announcing again brings it back. Errors
+// with `Closed` on a standalone broadcast (no origin to announce on).
 func (_self *MoqBroadcastProducer) Unannounce() error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -4997,6 +5017,17 @@ type MoqClientInterface interface {
 	SetTlsSystemRoots(systemRoots bool) error
 	// Enable or disable TLS certificate verification.
 	SetTlsVerify(verify bool) error
+	// Set the head start, in microseconds, QUIC gets before the WebSocket fallback joins
+	// the race. Defaults to 200ms.
+	//
+	// Zero races both at once. A server where WebSocket already won skips the head start.
+	SetWebsocketDelay(delayUs uint64) error
+	// Enable or disable the WebSocket fallback. Enabled by default.
+	//
+	// The fallback races a WebSocket dial against QUIC for `http(s)` URLs, for networks
+	// that block UDP. Disable it for a relay that only serves QUIC, so a failed QUIC dial
+	// reports its own error instead of the fallback's.
+	SetWebsocketEnabled(enabled bool) error
 }
 
 // Builds a [`MoqSession`]: configure it, then [`connect`](Self::connect).
@@ -5261,6 +5292,37 @@ func (_self *MoqClient) SetTlsVerify(verify bool) error {
 	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
 		C.uniffi_moq_ffi_fn_method_moqclient_set_tls_verify(
 			_pointer, FfiConverterBoolINSTANCE.Lower(verify), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Set the head start, in microseconds, QUIC gets before the WebSocket fallback joins
+// the race. Defaults to 200ms.
+//
+// Zero races both at once. A server where WebSocket already won skips the head start.
+func (_self *MoqClient) SetWebsocketDelay(delayUs uint64) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqClient")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqclient_set_websocket_delay(
+			_pointer, FfiConverterUint64INSTANCE.Lower(delayUs), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Enable or disable the WebSocket fallback. Enabled by default.
+//
+// The fallback races a WebSocket dial against QUIC for `http(s)` URLs, for networks
+// that block UDP. Disable it for a relay that only serves QUIC, so a failed QUIC dial
+// reports its own error instead of the fallback's.
+func (_self *MoqClient) SetWebsocketEnabled(enabled bool) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqClient")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqclient_set_websocket_enabled(
+			_pointer, FfiConverterBoolINSTANCE.Lower(enabled), _uniffiStatus)
 		return false
 	})
 	return _uniffiErr.AsError()
@@ -7056,14 +7118,15 @@ type MoqOriginConsumerInterface interface {
 	//
 	// This is how you resolve a path right after connecting: announcements arrive over the
 	// session after it opens, so `request_broadcast` on its own races them. A
-	// local broadcast appears on this origin's cursor when created, whether or not
-	// it has been advertised to peers.
+	// broadcast created on this origin resolves once it is announced, like a
+	// remote one.
 	AnnouncedBroadcast(path string) (*MoqAnnouncedBroadcast, error)
 	// Request a broadcast by path, resolving as soon as it can be served.
 	//
-	// Resolution order: a local broadcast at the exact path, then the best announced route
-	// covering the path (served on demand by the session that announced it), then a dynamic
-	// handler on the origin (if any). Unlike `announced_broadcast`, this answers for what is
+	// Resolves through the best announced route covering the path: an announced broadcast
+	// on this origin, a route a session announced (served on demand by that session), or a
+	// dynamic handler on the origin. The most specific prefix wins, then the cheapest. An
+	// unannounced broadcast is unroutable. Unlike `announced_broadcast`, this answers for what is
 	// reachable *now* and errors if nothing can serve the path. Drop the returned future to
 	// cancel.
 	//
@@ -7096,8 +7159,8 @@ func (_self *MoqOriginConsumer) Announced(config MoqAnnounceConfig) (*MoqAnnounc
 //
 // This is how you resolve a path right after connecting: announcements arrive over the
 // session after it opens, so `request_broadcast` on its own races them. A
-// local broadcast appears on this origin's cursor when created, whether or not
-// it has been advertised to peers.
+// broadcast created on this origin resolves once it is announced, like a
+// remote one.
 func (_self *MoqOriginConsumer) AnnouncedBroadcast(path string) (*MoqAnnouncedBroadcast, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqOriginConsumer")
 	defer _self.ffiObject.decrementPointer()
@@ -7115,9 +7178,10 @@ func (_self *MoqOriginConsumer) AnnouncedBroadcast(path string) (*MoqAnnouncedBr
 
 // Request a broadcast by path, resolving as soon as it can be served.
 //
-// Resolution order: a local broadcast at the exact path, then the best announced route
-// covering the path (served on demand by the session that announced it), then a dynamic
-// handler on the origin (if any). Unlike `announced_broadcast`, this answers for what is
+// Resolves through the best announced route covering the path: an announced broadcast
+// on this origin, a route a session announced (served on demand by that session), or a
+// dynamic handler on the origin. The most specific prefix wins, then the cheapest. An
+// unannounced broadcast is unroutable. Unlike `announced_broadcast`, this answers for what is
 // reachable *now* and errors if nothing can serve the path. Drop the returned future to
 // cancel.
 //
@@ -7223,8 +7287,7 @@ type MoqOriginDynamicInterface interface {
 	// here, not when the handle is, so pending requests are rejected before
 	// this returns.
 	Cancel()
-	// Wait for the next requested broadcast no local broadcast resolves under
-	// this handle's prefix.
+	// Wait for the next broadcast requested through this handle's prefix.
 	//
 	// Returns a [`MoqBroadcastRequest`]: accept it with a broadcast producer or reject
 	// it with an application error code. The requesting consumer stays pending until then.
@@ -7254,8 +7317,7 @@ func (_self *MoqOriginDynamic) Cancel() {
 	})
 }
 
-// Wait for the next requested broadcast no local broadcast resolves under
-// this handle's prefix.
+// Wait for the next broadcast requested through this handle's prefix.
 //
 // Returns a [`MoqBroadcastRequest`]: accept it with a broadcast producer or reject
 // it with an application error code. The requesting consumer stays pending until then.
@@ -7370,11 +7432,11 @@ type MoqOriginProducerInterface interface {
 	Consume() *MoqOriginConsumer
 	// Create a broadcast at `path` on this origin, returning the producer that feeds it.
 	//
-	// The broadcast appears on this origin's local announcement streams immediately.
-	// Advertise it to peers with
-	// [`MoqBroadcastProducer::announce`] after populating tracks; an on-demand
-	// handler is [`Self::dynamic`]. Create, `dynamic()` if tracks are served on
-	// demand, populate, then announce.
+	// The broadcast exists for nobody, on this origin or its peers, until
+	// [`MoqBroadcastProducer::announce`]: until then announcement streams skip it
+	// and requests for its path are unroutable. Announce after populating
+	// tracks; an on-demand handler is [`Self::dynamic`]. Create, `dynamic()` if
+	// tracks are served on demand, populate, then announce.
 	//
 	// [`MoqBroadcastProducer::finish`] unpublishes immediately. Dropping the producer
 	// without finishing also unpublishes, but subscribers observe the end as a
@@ -7413,11 +7475,11 @@ func (_self *MoqOriginProducer) Consume() *MoqOriginConsumer {
 
 // Create a broadcast at `path` on this origin, returning the producer that feeds it.
 //
-// The broadcast appears on this origin's local announcement streams immediately.
-// Advertise it to peers with
-// [`MoqBroadcastProducer::announce`] after populating tracks; an on-demand
-// handler is [`Self::dynamic`]. Create, `dynamic()` if tracks are served on
-// demand, populate, then announce.
+// The broadcast exists for nobody, on this origin or its peers, until
+// [`MoqBroadcastProducer::announce`]: until then announcement streams skip it
+// and requests for its path are unroutable. Announce after populating
+// tracks; an on-demand handler is [`Self::dynamic`]. Create, `dynamic()` if
+// tracks are served on demand, populate, then announce.
 //
 // [`MoqBroadcastProducer::finish`] unpublishes immediately. Dropping the producer
 // without finishing also unpublishes, but subscribers observe the end as a
@@ -10220,11 +10282,14 @@ type MoqAnnounceConfig struct {
 	Prefix string
 	// Pattern relative to `prefix`, or `None` for every path beneath it.
 	Filter *string
+	// Also list hidden paths: those with a segment starting with `.` below the prefix.
+	Hidden bool
 }
 
 func (r *MoqAnnounceConfig) Destroy() {
 	FfiDestroyerString{}.Destroy(r.Prefix)
 	FfiDestroyerOptionalString{}.Destroy(r.Filter)
+	FfiDestroyerBool{}.Destroy(r.Hidden)
 }
 
 type FfiConverterMoqAnnounceConfig struct{}
@@ -10239,6 +10304,7 @@ func (c FfiConverterMoqAnnounceConfig) Read(reader io.Reader) MoqAnnounceConfig 
 	return MoqAnnounceConfig{
 		FfiConverterStringINSTANCE.Read(reader),
 		FfiConverterOptionalStringINSTANCE.Read(reader),
+		FfiConverterBoolINSTANCE.Read(reader),
 	}
 }
 
@@ -10253,6 +10319,7 @@ func (c FfiConverterMoqAnnounceConfig) LowerExternal(value MoqAnnounceConfig) Ex
 func (c FfiConverterMoqAnnounceConfig) Write(writer io.Writer, value MoqAnnounceConfig) {
 	FfiConverterStringINSTANCE.Write(writer, value.Prefix)
 	FfiConverterOptionalStringINSTANCE.Write(writer, value.Filter)
+	FfiConverterBoolINSTANCE.Write(writer, value.Hidden)
 }
 
 type FfiDestroyerMoqAnnounceConfig struct{}
@@ -11324,8 +11391,9 @@ func (_ FfiDestroyerMoqProtocolError) Destroy(value MoqProtocolError) {
 //
 // Pair one with `MoqBroadcastProducer::announce` for an exact path, or with
 // `MoqOriginProducer::dynamic` for a prefix. Observe them with
-// `MoqOriginConsumer::announced`. A route claims capability, not inventory: a publisher advertises each broadcast's exact path to peers once ready,
-// while local consumers can enumerate it from creation, while a service advertises a prefix and answers
+// `MoqOriginConsumer::announced`. A route claims capability, not inventory: by
+// convention a publisher announces each broadcast's exact path, so subscribers
+// can enumerate broadcasts, while a service advertises a prefix and answers
 // whatever is requested beneath it.
 type MoqRoute struct {
 	// Hop ids of the relay hops the route traversed, oldest first. 0 is the

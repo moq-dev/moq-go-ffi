@@ -1634,6 +1634,16 @@ void uniffi_moq_ffi_fn_method_moqclient_set_tls_system_roots(uint64_t ptr, int8_
 void uniffi_moq_ffi_fn_method_moqclient_set_tls_verify(uint64_t ptr, int8_t verify, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQCLIENT_SET_WEBSOCKET_DELAY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQCLIENT_SET_WEBSOCKET_DELAY
+void uniffi_moq_ffi_fn_method_moqclient_set_websocket_delay(uint64_t ptr, uint64_t delay_us, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQCLIENT_SET_WEBSOCKET_ENABLED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQCLIENT_SET_WEBSOCKET_ENABLED
+void uniffi_moq_ffi_fn_method_moqclient_set_websocket_enabled(uint64_t ptr, int8_t enabled, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQSESSION
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CLONE_MOQSESSION
 uint64_t uniffi_moq_ffi_fn_clone_moqsession(uint64_t handle, RustCallStatus *out_status
@@ -3070,6 +3080,18 @@ uint16_t uniffi_moq_ffi_checksum_method_moqclient_set_tls_system_roots(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_TLS_VERIFY
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_TLS_VERIFY
 uint16_t uniffi_moq_ffi_checksum_method_moqclient_set_tls_verify(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_WEBSOCKET_DELAY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_WEBSOCKET_DELAY
+uint16_t uniffi_moq_ffi_checksum_method_moqclient_set_websocket_delay(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_WEBSOCKET_ENABLED
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQCLIENT_SET_WEBSOCKET_ENABLED
+uint16_t uniffi_moq_ffi_checksum_method_moqclient_set_websocket_enabled(void
     
 );
 #endif
