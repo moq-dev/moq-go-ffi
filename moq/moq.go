@@ -500,6 +500,42 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbinarysnapshotproducer_finish()
+		})
+		if checksum != 10338 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbinarysnapshotproducer_finish: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbinarysnapshotproducer_update()
+		})
+		if checksum != 56077 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbinarysnapshotproducer_update: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbinarystreamproducer_append()
+		})
+		if checksum != 1645 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbinarystreamproducer_append: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbinarystreamproducer_finish()
+		})
+		if checksum != 60630 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbinarystreamproducer_finish: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastconsumer_decode_audio()
 		})
 		if checksum != 18081 {
@@ -1076,9 +1112,27 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_binary_snapshot()
+		})
+		if checksum != 6748 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_binary_snapshot: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_binary_stream()
+		})
+		if checksum != 58418 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_binary_stream: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_snapshot()
 		})
-		if checksum != 51036 {
+		if checksum != 64276 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_snapshot: UniFFI API checksum mismatch")
 		}
@@ -1087,7 +1141,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_stream()
 		})
-		if checksum != 47317 {
+		if checksum != 54975 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_publish_json_stream: UniFFI API checksum mismatch")
 		}
@@ -3455,6 +3509,190 @@ func (_ FfiDestroyerMoqBandwidth) Destroy(value *MoqBandwidth) {
 	value.Destroy()
 }
 
+// Publishes opaque payloads that consumers see as a single latest value.
+type MoqBinarySnapshotProducerInterface interface {
+	// Finish the track and retire its catalog entry.
+	Finish() error
+	// Publish a new payload, superseding the last.
+	Update(payload []byte) error
+}
+
+// Publishes opaque payloads that consumers see as a single latest value.
+type MoqBinarySnapshotProducer struct {
+	ffiObject FfiObject
+}
+
+// Finish the track and retire its catalog entry.
+func (_self *MoqBinarySnapshotProducer) Finish() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBinarySnapshotProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbinarysnapshotproducer_finish(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Publish a new payload, superseding the last.
+func (_self *MoqBinarySnapshotProducer) Update(payload []byte) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBinarySnapshotProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbinarysnapshotproducer_update(
+			_pointer, FfiConverterBytesINSTANCE.Lower(payload), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+func (object *MoqBinarySnapshotProducer) Destroy() {
+	runtime.SetFinalizer(object, nil)
+	object.ffiObject.destroy()
+}
+
+type FfiConverterMoqBinarySnapshotProducer struct{}
+
+var FfiConverterMoqBinarySnapshotProducerINSTANCE = FfiConverterMoqBinarySnapshotProducer{}
+
+func (c FfiConverterMoqBinarySnapshotProducer) Lift(handle C.uint64_t) *MoqBinarySnapshotProducer {
+	result := &MoqBinarySnapshotProducer{
+		newFfiObject(
+			handle,
+			func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+				return C.uniffi_moq_ffi_fn_clone_moqbinarysnapshotproducer(handle, status)
+			},
+			func(handle C.uint64_t, status *C.RustCallStatus) {
+				C.uniffi_moq_ffi_fn_free_moqbinarysnapshotproducer(handle, status)
+			},
+		),
+	}
+	runtime.SetFinalizer(result, (*MoqBinarySnapshotProducer).Destroy)
+	return result
+}
+
+func (c FfiConverterMoqBinarySnapshotProducer) Read(reader io.Reader) *MoqBinarySnapshotProducer {
+	return c.Lift(C.uint64_t(readUint64(reader)))
+}
+
+func (c FfiConverterMoqBinarySnapshotProducer) Lower(value *MoqBinarySnapshotProducer) C.uint64_t {
+	// TODO: this is bad - all synchronization from ObjectRuntime.go is discarded here,
+	// because the handle will be decremented immediately after this function returns,
+	// and someone will be left holding onto a non-locked handle.
+	handle := value.ffiObject.incrementPointer("*MoqBinarySnapshotProducer")
+	defer value.ffiObject.decrementPointer()
+	return handle
+}
+
+func (c FfiConverterMoqBinarySnapshotProducer) Write(writer io.Writer, value *MoqBinarySnapshotProducer) {
+	writeUint64(writer, uint64(c.Lower(value)))
+}
+
+func LiftFromExternalMoqBinarySnapshotProducer(handle uint64) *MoqBinarySnapshotProducer {
+	return FfiConverterMoqBinarySnapshotProducerINSTANCE.Lift(C.uint64_t(handle))
+}
+
+func LowerToExternalMoqBinarySnapshotProducer(value *MoqBinarySnapshotProducer) uint64 {
+	return uint64(FfiConverterMoqBinarySnapshotProducerINSTANCE.Lower(value))
+}
+
+type FfiDestroyerMoqBinarySnapshotProducer struct{}
+
+func (_ FfiDestroyerMoqBinarySnapshotProducer) Destroy(value *MoqBinarySnapshotProducer) {
+	value.Destroy()
+}
+
+// Publishes an ordered log of opaque payloads, one per append.
+type MoqBinaryStreamProducerInterface interface {
+	// Append one payload to the log.
+	Append(payload []byte) error
+	// Finish the track and retire its catalog entry.
+	Finish() error
+}
+
+// Publishes an ordered log of opaque payloads, one per append.
+type MoqBinaryStreamProducer struct {
+	ffiObject FfiObject
+}
+
+// Append one payload to the log.
+func (_self *MoqBinaryStreamProducer) Append(payload []byte) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBinaryStreamProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbinarystreamproducer_append(
+			_pointer, FfiConverterBytesINSTANCE.Lower(payload), _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
+// Finish the track and retire its catalog entry.
+func (_self *MoqBinaryStreamProducer) Finish() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBinaryStreamProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbinarystreamproducer_finish(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+func (object *MoqBinaryStreamProducer) Destroy() {
+	runtime.SetFinalizer(object, nil)
+	object.ffiObject.destroy()
+}
+
+type FfiConverterMoqBinaryStreamProducer struct{}
+
+var FfiConverterMoqBinaryStreamProducerINSTANCE = FfiConverterMoqBinaryStreamProducer{}
+
+func (c FfiConverterMoqBinaryStreamProducer) Lift(handle C.uint64_t) *MoqBinaryStreamProducer {
+	result := &MoqBinaryStreamProducer{
+		newFfiObject(
+			handle,
+			func(handle C.uint64_t, status *C.RustCallStatus) C.uint64_t {
+				return C.uniffi_moq_ffi_fn_clone_moqbinarystreamproducer(handle, status)
+			},
+			func(handle C.uint64_t, status *C.RustCallStatus) {
+				C.uniffi_moq_ffi_fn_free_moqbinarystreamproducer(handle, status)
+			},
+		),
+	}
+	runtime.SetFinalizer(result, (*MoqBinaryStreamProducer).Destroy)
+	return result
+}
+
+func (c FfiConverterMoqBinaryStreamProducer) Read(reader io.Reader) *MoqBinaryStreamProducer {
+	return c.Lift(C.uint64_t(readUint64(reader)))
+}
+
+func (c FfiConverterMoqBinaryStreamProducer) Lower(value *MoqBinaryStreamProducer) C.uint64_t {
+	// TODO: this is bad - all synchronization from ObjectRuntime.go is discarded here,
+	// because the handle will be decremented immediately after this function returns,
+	// and someone will be left holding onto a non-locked handle.
+	handle := value.ffiObject.incrementPointer("*MoqBinaryStreamProducer")
+	defer value.ffiObject.decrementPointer()
+	return handle
+}
+
+func (c FfiConverterMoqBinaryStreamProducer) Write(writer io.Writer, value *MoqBinaryStreamProducer) {
+	writeUint64(writer, uint64(c.Lower(value)))
+}
+
+func LiftFromExternalMoqBinaryStreamProducer(handle uint64) *MoqBinaryStreamProducer {
+	return FfiConverterMoqBinaryStreamProducerINSTANCE.Lift(C.uint64_t(handle))
+}
+
+func LowerToExternalMoqBinaryStreamProducer(value *MoqBinaryStreamProducer) uint64 {
+	return uint64(FfiConverterMoqBinaryStreamProducerINSTANCE.Lower(value))
+}
+
+type FfiDestroyerMoqBinaryStreamProducer struct{}
+
+func (_ FfiDestroyerMoqBinaryStreamProducer) Destroy(value *MoqBinaryStreamProducer) {
+	value.Destroy()
+}
+
 type MoqBroadcastConsumerInterface interface {
 	// Subscribe to an audio track. `catalog_audio_config` comes from
 	// the catalog (see
@@ -4170,12 +4408,24 @@ type MoqBroadcastProducerInterface interface {
 	// call only claims the share so a co-resident video encoder sizes itself
 	// against what is left.
 	EncodeAudio(name string, input MoqAudioEncoderInput, output MoqAudioEncoderOutput, bandwidth **MoqBandwidth) (*MoqAudioProducer, error)
-	// Publish a JSON snapshot track (lossy latest-value) by name.
+	// Publish a binary snapshot track (lossy latest-value) by name, advertised in the catalog.
 	//
-	// Advertise it in the catalog yourself with
-	// [`set_catalog_section`](Self::set_catalog_section) if consumers should discover it.
+	// Errors if the catalog already carries an entry under `name`.
+	PublishBinarySnapshot(name string, config MoqBinaryConfig) (*MoqBinarySnapshotProducer, error)
+	// Publish a binary stream track (lossless append-log) by name, advertised in the catalog.
+	//
+	// Errors if the catalog already carries an entry under `name`.
+	PublishBinaryStream(name string, config MoqBinaryConfig) (*MoqBinaryStreamProducer, error)
+	// Publish a JSON snapshot track (lossy latest-value) by name, advertised in the catalog.
+	//
+	// The broadcast's catalog carries `json.tracks.<name>` (`mode: snapshot`, and
+	// `compression: deflate` when set) for as long as the track lives; finishing or dropping the
+	// producer retires it. Errors if the catalog already carries an entry under `name`.
 	PublishJsonSnapshot(name string, config MoqJsonSnapshotConfig) (*MoqJsonSnapshotProducer, error)
-	// Publish a JSON stream track (lossless append-log) by name.
+	// Publish a JSON stream track (lossless append-log) by name, advertised in the catalog.
+	//
+	// The broadcast's catalog carries `json.tracks.<name>` (`mode: stream`) for as long as the
+	// track lives. Errors if the catalog already carries an entry under `name`.
 	PublishJsonStream(name string, config MoqJsonStreamConfig) (*MoqJsonStreamProducer, error)
 	// Advertise this broadcast's exact path as a route.
 	//
@@ -4310,10 +4560,47 @@ func (_self *MoqBroadcastProducer) EncodeAudio(name string, input MoqAudioEncode
 	}
 }
 
-// Publish a JSON snapshot track (lossy latest-value) by name.
+// Publish a binary snapshot track (lossy latest-value) by name, advertised in the catalog.
 //
-// Advertise it in the catalog yourself with
-// [`set_catalog_section`](Self::set_catalog_section) if consumers should discover it.
+// Errors if the catalog already carries an entry under `name`.
+func (_self *MoqBroadcastProducer) PublishBinarySnapshot(name string, config MoqBinaryConfig) (*MoqBinarySnapshotProducer, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_publish_binary_snapshot(
+			_pointer, FfiConverterStringINSTANCE.Lower(name), FfiConverterMoqBinaryConfigINSTANCE.Lower(config), _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqBinarySnapshotProducer
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqBinarySnapshotProducerINSTANCE.Lift(_uniffiRV), nil
+	}
+}
+
+// Publish a binary stream track (lossless append-log) by name, advertised in the catalog.
+//
+// Errors if the catalog already carries an entry under `name`.
+func (_self *MoqBroadcastProducer) PublishBinaryStream(name string, config MoqBinaryConfig) (*MoqBinaryStreamProducer, error) {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
+	defer _self.ffiObject.decrementPointer()
+	_uniffiRV, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_publish_binary_stream(
+			_pointer, FfiConverterStringINSTANCE.Lower(name), FfiConverterMoqBinaryConfigINSTANCE.Lower(config), _uniffiStatus)
+	})
+	if _uniffiErr != nil {
+		var _uniffiDefaultValue *MoqBinaryStreamProducer
+		return _uniffiDefaultValue, _uniffiErr
+	} else {
+		return FfiConverterMoqBinaryStreamProducerINSTANCE.Lift(_uniffiRV), nil
+	}
+}
+
+// Publish a JSON snapshot track (lossy latest-value) by name, advertised in the catalog.
+//
+// The broadcast's catalog carries `json.tracks.<name>` (`mode: snapshot`, and
+// `compression: deflate` when set) for as long as the track lives; finishing or dropping the
+// producer retires it. Errors if the catalog already carries an entry under `name`.
 func (_self *MoqBroadcastProducer) PublishJsonSnapshot(name string, config MoqJsonSnapshotConfig) (*MoqJsonSnapshotProducer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -4329,7 +4616,10 @@ func (_self *MoqBroadcastProducer) PublishJsonSnapshot(name string, config MoqJs
 	}
 }
 
-// Publish a JSON stream track (lossless append-log) by name.
+// Publish a JSON stream track (lossless append-log) by name, advertised in the catalog.
+//
+// The broadcast's catalog carries `json.tracks.<name>` (`mode: stream`) for as long as the
+// track lives. Errors if the catalog already carries an entry under `name`.
 func (_self *MoqBroadcastProducer) PublishJsonStream(name string, config MoqJsonStreamConfig) (*MoqJsonStreamProducer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -10778,6 +11068,53 @@ func (c FfiConverterMoqBackoff) Write(writer io.Writer, value MoqBackoff) {
 type FfiDestroyerMoqBackoff struct{}
 
 func (_ FfiDestroyerMoqBackoff) Destroy(value MoqBackoff) {
+	value.Destroy()
+}
+
+// Options for a binary data track, in either mode (the mode is fixed by the constructor).
+type MoqBinaryConfig struct {
+	// DEFLATE-compress each payload, advertised in the catalog entry.
+	Compression bool
+	// The payloads' media type (e.g. `image/jpeg`), or `None` to leave it unstated.
+	Mime *string
+}
+
+func (r *MoqBinaryConfig) Destroy() {
+	FfiDestroyerBool{}.Destroy(r.Compression)
+	FfiDestroyerOptionalString{}.Destroy(r.Mime)
+}
+
+type FfiConverterMoqBinaryConfig struct{}
+
+var FfiConverterMoqBinaryConfigINSTANCE = FfiConverterMoqBinaryConfig{}
+
+func (c FfiConverterMoqBinaryConfig) Lift(rb RustBufferI) MoqBinaryConfig {
+	return LiftFromRustBuffer[MoqBinaryConfig](c, rb)
+}
+
+func (c FfiConverterMoqBinaryConfig) Read(reader io.Reader) MoqBinaryConfig {
+	return MoqBinaryConfig{
+		FfiConverterBoolINSTANCE.Read(reader),
+		FfiConverterOptionalStringINSTANCE.Read(reader),
+	}
+}
+
+func (c FfiConverterMoqBinaryConfig) Lower(value MoqBinaryConfig) C.RustBuffer {
+	return LowerIntoRustBuffer[MoqBinaryConfig](c, value)
+}
+
+func (c FfiConverterMoqBinaryConfig) LowerExternal(value MoqBinaryConfig) ExternalCRustBuffer {
+	return RustBufferFromC(LowerIntoRustBuffer[MoqBinaryConfig](c, value))
+}
+
+func (c FfiConverterMoqBinaryConfig) Write(writer io.Writer, value MoqBinaryConfig) {
+	FfiConverterBoolINSTANCE.Write(writer, value.Compression)
+	FfiConverterOptionalStringINSTANCE.Write(writer, value.Mime)
+}
+
+type FfiDestroyerMoqBinaryConfig struct{}
+
+func (_ FfiDestroyerMoqBinaryConfig) Destroy(value MoqBinaryConfig) {
 	value.Destroy()
 }
 
