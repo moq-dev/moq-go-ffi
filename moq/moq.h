@@ -1087,6 +1087,11 @@ uint64_t uniffi_moq_ffi_fn_method_moqbroadcastproducer_publish_json_stream(uint6
 void uniffi_moq_ffi_fn_method_moqbroadcastproducer_announce(uint64_t ptr, RustBuffer route, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_CLOSE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_CLOSE
+void uniffi_moq_ffi_fn_method_moqbroadcastproducer_close(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_CONSUME
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQBROADCASTPRODUCER_CONSUME
 uint64_t uniffi_moq_ffi_fn_method_moqbroadcastproducer_consume(uint64_t ptr, RustCallStatus *out_status
@@ -1300,6 +1305,11 @@ void uniffi_moq_ffi_fn_method_moqmediaproducer_cut(uint64_t ptr, RustCallStatus 
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DEMAND
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DEMAND
 uint64_t uniffi_moq_ffi_fn_method_moqmediaproducer_demand(uint64_t ptr, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DISCONTINUITY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_DISCONTINUITY
+void uniffi_moq_ffi_fn_method_moqmediaproducer_discontinuity(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQMEDIAPRODUCER_FINISH
@@ -2616,6 +2626,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqbroadcastproducer_announce(void
     
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_CLOSE
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_CLOSE
+uint16_t uniffi_moq_ffi_checksum_method_moqbroadcastproducer_close(void
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_CONSUME
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQBROADCASTPRODUCER_CONSUME
 uint16_t uniffi_moq_ffi_checksum_method_moqbroadcastproducer_consume(void
@@ -2811,6 +2827,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_cut(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DEMAND
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DEMAND
 uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_demand(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DISCONTINUITY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQMEDIAPRODUCER_DISCONTINUITY
+uint16_t uniffi_moq_ffi_checksum_method_moqmediaproducer_discontinuity(void
     
 );
 #endif

@@ -961,7 +961,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_available()
 		})
-		if checksum != 42497 {
+		if checksum != 37458 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqannouncedbroadcast_available: UniFFI API checksum mismatch")
 		}
@@ -1157,6 +1157,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_close()
+		})
+		if checksum != 19191 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_close: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_consume()
 		})
 		if checksum != 27634 {
@@ -1177,7 +1186,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_finish()
 		})
-		if checksum != 7183 {
+		if checksum != 29562 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_finish: UniFFI API checksum mismatch")
 		}
@@ -1450,6 +1459,15 @@ func uniffiCheckChecksums() {
 		if checksum != 44491 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_demand: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_discontinuity()
+		})
+		if checksum != 37570 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_discontinuity: UniFFI API checksum mismatch")
 		}
 	}
 	{
@@ -2821,7 +2839,7 @@ func (_ FfiDestroyerMoqAnnounceUpdate) Destroy(value *MoqAnnounceUpdate) {
 type MoqAnnouncedBroadcastInterface interface {
 	// Wait until the broadcast is announced. Returns `Closed` if cancelled or the origin is closed.
 	//
-	// Use `broadcast.closed()` to learn when the broadcast ends.
+	// Its end arrives as an inactive [`MoqAnnounceUpdate`] on the origin's announcements.
 	Available(
 		ctx context.Context) (*MoqBroadcastConsumer, error)
 	// Cancel all current and future `available()` calls.
@@ -2837,7 +2855,7 @@ type MoqAnnouncedBroadcast struct {
 
 // Wait until the broadcast is announced. Returns `Closed` if cancelled or the origin is closed.
 //
-// Use `broadcast.closed()` to learn when the broadcast ends.
+// Its end arrives as an inactive [`MoqAnnounceUpdate`] on the origin's announcements.
 func (_self *MoqAnnouncedBroadcast) Available(
 	ctx context.Context) (*MoqBroadcastConsumer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqAnnouncedBroadcast")
@@ -4433,6 +4451,11 @@ type MoqBroadcastProducerInterface interface {
 	// consumers and peers alike. Announcing again re-prices the route in place.
 	// Errors with `Closed` on a standalone broadcast (no origin to announce on).
 	Announce(route MoqRoute) error
+	// End the broadcast for good: retract it, serve no new tracks, and finalize the catalog.
+	//
+	// Tracks already subscribed carry on to their own end. Every later call on this
+	// producer fails with `Closed`; closing again is a no-op.
+	Close() error
 	// Create a consumer that reads from this broadcast's tracks.
 	Consume() (*MoqBroadcastConsumer, error)
 	// Create a dynamic producer that yields tracks requested by subscribers.
@@ -4440,8 +4463,7 @@ type MoqBroadcastProducerInterface interface {
 	// Hold the returned object for as long as missing track requests should be
 	// accepted. Dropping it makes future subscriptions to unknown tracks fail.
 	Dynamic() (*MoqBroadcastDynamic, error)
-	// Finish this publisher, finalizing the catalog stream and cleanly closing the
-	// broadcast so subscribers see a normal end rather than `Error::Dropped`.
+	// Deprecated: use `close()`. A broadcast end carries no cause.
 	Finish() error
 	// Publish one audio codec as a new track.
 	//
@@ -4651,6 +4673,21 @@ func (_self *MoqBroadcastProducer) Announce(route MoqRoute) error {
 	return _uniffiErr.AsError()
 }
 
+// End the broadcast for good: retract it, serve no new tracks, and finalize the catalog.
+//
+// Tracks already subscribed carry on to their own end. Every later call on this
+// producer fails with `Closed`; closing again is a no-op.
+func (_self *MoqBroadcastProducer) Close() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqbroadcastproducer_close(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
+}
+
 // Create a consumer that reads from this broadcast's tracks.
 func (_self *MoqBroadcastProducer) Consume() (*MoqBroadcastConsumer, error) {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
@@ -4686,8 +4723,7 @@ func (_self *MoqBroadcastProducer) Dynamic() (*MoqBroadcastDynamic, error) {
 	}
 }
 
-// Finish this publisher, finalizing the catalog stream and cleanly closing the
-// broadcast so subscribers see a normal end rather than `Error::Dropped`.
+// Deprecated: use `close()`. A broadcast end carries no cause.
 func (_self *MoqBroadcastProducer) Finish() error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -7056,6 +7092,10 @@ type MoqMediaProducerInterface interface {
 	Cut() error
 	// A watch-only handle to whether this track has subscribers.
 	Demand() (*MoqTrackDemand, error)
+	// Mark a timeline break and restart handoff measurement without lowering advertised jitter.
+	//
+	// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock.
+	Discontinuity() error
 	// Finish this track and finalize encoding.
 	Finish() error
 	// Record a locally encoded frame's handoff for catalog jitter measurement.
@@ -7121,6 +7161,20 @@ func (_self *MoqMediaProducer) Demand() (*MoqTrackDemand, error) {
 	} else {
 		return FfiConverterMoqTrackDemandINSTANCE.Lift(_uniffiRV), nil
 	}
+}
+
+// Mark a timeline break and restart handoff measurement without lowering advertised jitter.
+//
+// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock.
+func (_self *MoqMediaProducer) Discontinuity() error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
+	defer _self.ffiObject.decrementPointer()
+	_, _uniffiErr := rustCallWithError[*MoqError](FfiConverterMoqError{}, func(_uniffiStatus *C.RustCallStatus) bool {
+		C.uniffi_moq_ffi_fn_method_moqmediaproducer_discontinuity(
+			_pointer, _uniffiStatus)
+		return false
+	})
+	return _uniffiErr.AsError()
 }
 
 // Finish this track and finalize encoding.
