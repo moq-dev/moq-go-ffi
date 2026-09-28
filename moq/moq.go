@@ -1294,7 +1294,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqbroadcastproducer_unannounce()
 		})
-		if checksum != 63513 {
+		if checksum != 49647 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqbroadcastproducer_unannounce: UniFFI API checksum mismatch")
 		}
@@ -1465,7 +1465,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqmediaproducer_discontinuity()
 		})
-		if checksum != 37570 {
+		if checksum != 35894 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqmediaproducer_discontinuity: UniFFI API checksum mismatch")
 		}
@@ -4520,8 +4520,8 @@ type MoqBroadcastProducerInterface interface {
 	// Retract this broadcast's exact-path advertisement, if any.
 	//
 	// Local consumers and peers alike stop discovering and requesting it;
-	// tracks already in flight carry on. Announcing again brings it back. Errors
-	// with `Closed` on a standalone broadcast (no origin to announce on).
+	// tracks already in flight carry on. Announcing again brings it back. A no-op
+	// on a standalone broadcast.
 	Unannounce() error
 	// Open a video track on this broadcast, encoding the raw frames written to
 	// it.
@@ -4932,8 +4932,8 @@ func (_self *MoqBroadcastProducer) SetVideoProperties(properties MoqVideoPropert
 // Retract this broadcast's exact-path advertisement, if any.
 //
 // Local consumers and peers alike stop discovering and requesting it;
-// tracks already in flight carry on. Announcing again brings it back. Errors
-// with `Closed` on a standalone broadcast (no origin to announce on).
+// tracks already in flight carry on. Announcing again brings it back. A no-op
+// on a standalone broadcast.
 func (_self *MoqBroadcastProducer) Unannounce() error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqBroadcastProducer")
 	defer _self.ffiObject.decrementPointer()
@@ -7094,7 +7094,8 @@ type MoqMediaProducerInterface interface {
 	Demand() (*MoqTrackDemand, error)
 	// Mark a timeline break and restart handoff measurement without lowering advertised jitter.
 	//
-	// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock.
+	// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock,
+	// and video must resume on a keyframe.
 	Discontinuity() error
 	// Finish this track and finalize encoding.
 	Finish() error
@@ -7165,7 +7166,8 @@ func (_self *MoqMediaProducer) Demand() (*MoqTrackDemand, error) {
 
 // Mark a timeline break and restart handoff measurement without lowering advertised jitter.
 //
-// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock.
+// Publishes a discontinuity marker; resumed frames must continue the broadcast media clock,
+// and video must resume on a keyframe.
 func (_self *MoqMediaProducer) Discontinuity() error {
 	_pointer := _self.ffiObject.incrementPointer("*MoqMediaProducer")
 	defer _self.ffiObject.decrementPointer()
