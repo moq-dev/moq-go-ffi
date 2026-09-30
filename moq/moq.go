@@ -2219,6 +2219,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_constructor_moqaudiocodec_aac()
+		})
+		if checksum != 18170 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_constructor_moqaudiocodec_aac: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_constructor_moqaudiocodec_opus()
 		})
 		if checksum != 64803 {
@@ -2965,16 +2974,25 @@ func (_ FfiDestroyerMoqAnnouncedBroadcast) Destroy(value *MoqAnnouncedBroadcast)
 // Audio codec selection for the encoder.
 //
 // An immutable object so adding a codec later does not break callers
-// switching over a closed enum. Currently only Opus is available.
+// switching over a closed enum.
 type MoqAudioCodecInterface interface {
 }
 
 // Audio codec selection for the encoder.
 //
 // An immutable object so adding a codec later does not break callers
-// switching over a closed enum. Currently only Opus is available.
+// switching over a closed enum.
 type MoqAudioCodec struct {
 	ffiObject FfiObject
+}
+
+// AAC-LC (`mp4a.40.2`) through the platform's encoder, at the input's rate
+// and layout. A host without one refuses it when the producer is built.
+// Its frames are 1024 samples, so leave `frame_duration_us` at 0.
+func MoqAudioCodecAac() *MoqAudioCodec {
+	return FfiConverterMoqAudioCodecINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint64_t {
+		return C.uniffi_moq_ffi_fn_constructor_moqaudiocodec_aac(_uniffiStatus)
+	}))
 }
 
 // Opus (RFC 6716).
@@ -7659,6 +7677,9 @@ func (_ FfiDestroyerMoqOriginConsumer) Destroy(value *MoqOriginConsumer) {
 
 // A served route: advertises a path prefix and yields the broadcast requests
 // beneath it for the application to accept or reject.
+//
+// Keeps its origin running, like a published broadcast, after every
+// `MoqOriginProducer` is gone.
 type MoqOriginDynamicInterface interface {
 	// Stop serving and retract the route. Terminal: this handler is released
 	// here, not when the handle is, so pending requests are rejected before
@@ -7677,6 +7698,9 @@ type MoqOriginDynamicInterface interface {
 
 // A served route: advertises a path prefix and yields the broadcast requests
 // beneath it for the application to accept or reject.
+//
+// Keeps its origin running, like a published broadcast, after every
+// `MoqOriginProducer` is gone.
 type MoqOriginDynamic struct {
 	ffiObject FfiObject
 }
@@ -10781,7 +10805,9 @@ type MoqAudioDecoderOutput struct {
 	Format MoqAudioSampleFormat
 	// `None` delivers samples at the codec's native rate.
 	SampleRate *uint32
-	// `None` delivers samples at the codec's native channel count.
+	// `None` delivers samples at the codec's native channel count. A count
+	// names its layout as [`MoqAudioEncoderInput::channels`] describes, and
+	// the decoder remixes to it.
 	Channels *uint32
 	// Upper bound on buffering before skipping a stalled group, in
 	// microseconds. Same congestion-control knob as
@@ -10844,7 +10870,10 @@ func (_ FfiDestroyerMoqAudioDecoderOutput) Destroy(value MoqAudioDecoderOutput) 
 type MoqAudioEncoderInput struct {
 	Format     MoqAudioSampleFormat
 	SampleRate uint32
-	Channels   uint32
+	// Interleaved channel count, which also names the speaker layout by the
+	// WAVE convention: 1 mono, 2 stereo, 3 2.1, 4 quad, 5 5.0, 6 5.1, 7 6.1,
+	// 8 7.1, in front left, front right, center, LFE, back, side order.
+	Channels uint32
 }
 
 func (r *MoqAudioEncoderInput) Destroy() {
@@ -10899,7 +10928,7 @@ type MoqAudioEncoderOutput struct {
 	Bitrate    *uint32
 	// Encoded frame duration in microseconds. Opus accepts exactly
 	// 2500/5000/10000/20000/40000/60000 us, and the default 20 ms matches the
-	// JS publish path.
+	// JS publish path. 0 takes the codec's own frame, which AAC needs.
 	FrameDurationUs uint32
 }
 
@@ -12843,6 +12872,8 @@ func (_ FfiDestroyerMoqContainerFormat) Destroy(value MoqContainerFormat) {
 }
 
 // Error returned by all UniFFI-exported functions.
+//
+// Exports `Display`, which the bindings surface as the error's string form.
 type MoqError struct {
 	err error
 }
@@ -12856,9 +12887,18 @@ func (err *MoqError) AsError() error {
 		return err
 	}
 }
+func (_self *MoqError) String() string {
+	_selfBuf := FfiConverterMoqErrorINSTANCE.Lower(_self)
+	return FfiConverterStringINSTANCE.Lift(rustCall(func(_uniffiStatus *C.RustCallStatus) RustBufferI {
+		return GoRustBuffer{
+			inner: C.uniffi_moq_ffi_fn_method_moqerror_uniffi_trait_display(
+				_selfBuf, _uniffiStatus),
+		}
+	}))
+}
 
 func (err MoqError) Error() string {
-	return fmt.Sprintf("MoqError: %s", err.err.Error())
+	return (&err).String()
 }
 
 func (err MoqError) Unwrap() error {

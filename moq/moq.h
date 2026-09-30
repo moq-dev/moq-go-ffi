@@ -380,6 +380,12 @@ uint64_t uniffi_moq_ffi_fn_clone_moqaudiocodec(uint64_t handle, RustCallStatus *
 void uniffi_moq_ffi_fn_free_moqaudiocodec(uint64_t handle, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CONSTRUCTOR_MOQAUDIOCODEC_AAC
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CONSTRUCTOR_MOQAUDIOCODEC_AAC
+uint64_t uniffi_moq_ffi_fn_constructor_moqaudiocodec_aac(RustCallStatus *out_status
+    
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CONSTRUCTOR_MOQAUDIOCODEC_OPUS
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_CONSTRUCTOR_MOQAUDIOCODEC_OPUS
 uint64_t uniffi_moq_ffi_fn_constructor_moqaudiocodec_opus(RustCallStatus *out_status
@@ -1837,6 +1843,11 @@ uint64_t uniffi_moq_ffi_fn_method_moqvideoproducer_used(uint64_t ptr
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_WRITE
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQVIDEOPRODUCER_WRITE
 void uniffi_moq_ffi_fn_method_moqvideoproducer_write(uint64_t ptr, RustBuffer frame, RustCallStatus *out_status
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQERROR_UNIFFI_TRAIT_DISPLAY
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQERROR_UNIFFI_TRAIT_DISPLAY
+RustBuffer uniffi_moq_ffi_fn_method_moqerror_uniffi_trait_display(RustBuffer ptr, RustCallStatus *out_status
 );
 #endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_FUNC_MOQ_LOG_LEVEL
@@ -3331,6 +3342,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_used(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_WRITE
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQVIDEOPRODUCER_WRITE
 uint16_t uniffi_moq_ffi_checksum_method_moqvideoproducer_write(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_CONSTRUCTOR_MOQAUDIOCODEC_AAC
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_CONSTRUCTOR_MOQAUDIOCODEC_AAC
+uint16_t uniffi_moq_ffi_checksum_constructor_moqaudiocodec_aac(void
     
 );
 #endif
