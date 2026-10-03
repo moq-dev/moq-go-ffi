@@ -754,7 +754,7 @@ func uniffiCheckChecksums() {
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_datagram()
 		})
-		if checksum != 29049 {
+		if checksum != 17412 {
 			// If this happens try cleaning and rebuilding your project
 			panic("moq: uniffi_moq_ffi_checksum_method_moqtrackconsumer_recv_datagram: UniFFI API checksum mismatch")
 		}
@@ -9053,7 +9053,7 @@ type MoqTrackConsumerInterface interface {
 	// Receive the next best-effort datagram in arrival order.
 	//
 	// Returns `None` when the track ends. Datagram delivery is unavailable over
-	// IETF moq-transport, pre-lite-05 moq-lite, and stream-only transports.
+	// pre-lite-05 moq-lite and stream-only transports.
 	// Datagrams are a separate cursor from groups, so this works alongside either
 	// group order, never commits the track to one, and progresses while a group
 	// read is pending.
@@ -9211,7 +9211,7 @@ func (_self *MoqTrackConsumer) ReadFrame(
 // Receive the next best-effort datagram in arrival order.
 //
 // Returns `None` when the track ends. Datagram delivery is unavailable over
-// IETF moq-transport, pre-lite-05 moq-lite, and stream-only transports.
+// pre-lite-05 moq-lite and stream-only transports.
 // Datagrams are a separate cursor from groups, so this works alongside either
 // group order, never commits the track to one, and progresses while a group
 // read is pending.
@@ -11987,9 +11987,10 @@ func (_ FfiDestroyerMoqSubscription) Destroy(value MoqSubscription) {
 // Publisher-side track properties, mirroring [`moq_net::track::Info`].
 //
 // Construct with the fields you care about; the rest use raw-track defaults
-// (priority 0, the publisher's default max age, microsecond timescale).
+// (priority 127, the publisher's default max age, microsecond timescale).
 type MoqTrackInfo struct {
 	// Priority, used only to break ties between subscriptions of equal subscriber priority.
+	// Higher is more urgent; the default 127 is the midpoint.
 	Priority uint8
 	// Maximum age of a non-latest group before the publisher evicts it, in
 	// microseconds. Null uses the default. This is the publisher-side half of
