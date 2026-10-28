@@ -1745,6 +1745,11 @@ uint64_t uniffi_moq_ffi_fn_method_moqsession_closed(uint64_t ptr
 uint64_t uniffi_moq_ffi_fn_method_moqsession_consume(uint64_t ptr, RustCallStatus *out_status
 );
 #endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_DRAIN
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_DRAIN
+uint64_t uniffi_moq_ffi_fn_method_moqsession_drain(uint64_t ptr
+);
+#endif
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_EPOCH
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_FN_METHOD_MOQSESSION_EPOCH
 uint64_t uniffi_moq_ffi_fn_method_moqsession_epoch(uint64_t ptr, RustCallStatus *out_status
@@ -3246,6 +3251,12 @@ uint16_t uniffi_moq_ffi_checksum_method_moqsession_closed(void
 #ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_CONSUME
 #define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_CONSUME
 uint16_t uniffi_moq_ffi_checksum_method_moqsession_consume(void
+    
+);
+#endif
+#ifndef UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_DRAIN
+#define UNIFFI_FFIDEF_UNIFFI_MOQ_FFI_CHECKSUM_METHOD_MOQSESSION_DRAIN
+uint16_t uniffi_moq_ffi_checksum_method_moqsession_drain(void
     
 );
 #endif

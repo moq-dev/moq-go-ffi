@@ -2075,6 +2075,15 @@ func uniffiCheckChecksums() {
 	}
 	{
 		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
+			return C.uniffi_moq_ffi_checksum_method_moqsession_drain()
+		})
+		if checksum != 51983 {
+			// If this happens try cleaning and rebuilding your project
+			panic("moq: uniffi_moq_ffi_checksum_method_moqsession_drain: UniFFI API checksum mismatch")
+		}
+	}
+	{
+		checksum := rustCall(func(_uniffiStatus *C.RustCallStatus) C.uint16_t {
 			return C.uniffi_moq_ffi_checksum_method_moqsession_epoch()
 		})
 		if checksum != 32695 {
@@ -8723,6 +8732,14 @@ type MoqSessionInterface interface {
 	// origin the caller wired via `set_consume`, or auto-created if
 	// neither was set.
 	Consume() *MoqOriginConsumer
+	// Drain finished tracks within one second, then close, returning any drain error.
+	//
+	// Finish or abort live tracks first; [`shutdown`](Self::shutdown) and
+	// [`cancel`](Self::cancel) stay immediate. Explicit `moq-lite-07-wip` waits for
+	// the peer to receive the tail. Older Lite versions, including the default
+	// lite-06, wait only for transport ACKs. moq-transport (IETF) closes without waiting.
+	Drain(
+		ctx context.Context) error
 	// The connection epoch: 1 for the connect this session was built from, one more
 	// on each reconnect. A server-accepted session is a single transport, so it stays 1.
 	//
@@ -8851,6 +8868,48 @@ func (_self *MoqSession) Consume() *MoqOriginConsumer {
 		return C.uniffi_moq_ffi_fn_method_moqsession_consume(
 			_pointer, _uniffiStatus)
 	}))
+}
+
+// Drain finished tracks within one second, then close, returning any drain error.
+//
+// Finish or abort live tracks first; [`shutdown`](Self::shutdown) and
+// [`cancel`](Self::cancel) stay immediate. Explicit `moq-lite-07-wip` waits for
+// the peer to receive the tail. Older Lite versions, including the default
+// lite-06, wait only for transport ACKs. moq-transport (IETF) closes without waiting.
+func (_self *MoqSession) Drain(
+	ctx context.Context) error {
+	_pointer := _self.ffiObject.incrementPointer("*MoqSession")
+	defer _self.ffiObject.decrementPointer()
+	_, err := uniffiRustCallAsync[*MoqError](
+		ctx,
+		FfiConverterMoqErrorINSTANCE,
+		// completeFn
+		func(handle C.uint64_t, status *C.RustCallStatus) struct{} {
+			C.ffi_moq_ffi_rust_future_complete_void(handle, status)
+			return struct{}{}
+		},
+		// liftFn
+		func(_ struct{}) struct{} { return struct{}{} },
+		// rustFutureFunc
+		func() C.uint64_t {
+			return C.uniffi_moq_ffi_fn_method_moqsession_drain(
+				_pointer)
+		},
+		// pollFn
+		func(handle C.uint64_t, continuation C.UniffiRustFutureContinuationCallback, data C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_poll_void(handle, continuation, data)
+		},
+		// cancelFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_cancel_void(handle)
+		},
+		// freeFn
+		func(handle C.uint64_t) {
+			C.ffi_moq_ffi_rust_future_free_void(handle)
+		},
+	)
+
+	return err
 }
 
 // The connection epoch: 1 for the connect this session was built from, one more
@@ -12441,7 +12500,7 @@ func (_ FfiDestroyerMoqVideoFrame) Destroy(value MoqVideoFrame) {
 type MoqVideoHint struct {
 	// The encoded pixel dimensions.
 	Coded *MoqDimensions
-	// The display aspect ratio.
+	// The aspect ratio the whole picture is displayed at, not the sample aspect. Absent means the decoded shape.
 	DisplayAspect *MoqDimensions
 	// The maximum bitrate in bits per second.
 	Bitrate *uint64
